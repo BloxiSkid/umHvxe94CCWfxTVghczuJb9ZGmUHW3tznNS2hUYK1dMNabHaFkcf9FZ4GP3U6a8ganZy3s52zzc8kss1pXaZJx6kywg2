@@ -1,14 +1,12 @@
 --// V: 0.7.4
---[[]
-PREMIUM
-]]
---loadstring(game:HttpGet("https://raw.githubusercontent.com/yohohoyu/WareHubber/main/Skid_Warehub%20beta%200.7.5"))() BETA LOADER
---// EXTRAS TO LOAD
+
 
 
 
 --//LOADSTRING
+-- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader 
 
+--START
 
 print("--------------------NEW STARTUP-----------------------")
 print("Startup detected!")
@@ -20,7 +18,27 @@ warn("Version 0.8.7")
 warn("Inztalizing.")
 warn("Getting source.")
 warn("CHECKING EXECUTOR")
+print("LOAING PLACE ID SAVES")
+writefile("PlaceIDsSKIDWARE.txt", "")
+local as=game:GetService("AssetService")
+local pgs=as:GetGamePlacesAsync()
 
+while true do
+     for _,plc in pairs(pgs:GetCurrentPage()) do
+          print("PlaceName: " .. plc.Name)
+          print("PlaceID: " .. tostring(plc.PlaceId))
+     end
+     if pgs.IsFinished then
+          break
+     end
+     pgs:AdvanceToNextPageAsync()
+end
+
+local lg=game:GetService("LogService")
+lg.MessageOut:Connect(function(msg, type)
+    appendfile("PlaceIDs.txt", msg.."\n")
+end)
+print("LOAING PLACE ID SAVES")
 warn("Inztalizing.")
 warn("Checking.")
 print("[SKID - WARE] Is now loading. thanks for using SkidWare!")
@@ -42,6 +60,7 @@ print("---")
 print("Loading anticheat byapss 1")
 print("----")
 --loadstring(game:HttpGet("https://raw.githubusercontent.com/yohohoyu/Hub/main/AntiCHeat%20bypass"))()
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/SkidWareObfuscared/eZKJCuAEq5SjpHed5fzQgtKp46eKby5HfNuKYnJ1zX8WpcJ1XA1MnEJtSEgucvzDZZrAt6RkjW6PDcmpU3MeZCAeS3wmaBxsBzm7/main/fYEVcUcB41Fu1RKEA16RjqECyK3Mn7FHexukM3PTadP35gJgnpaGK37RybyqYKMAvAyuAnzXh92ydqfnePMyEKv4HU4CRepCjkYmX3UDVnNRMMUMRrWfCvPrsKCDeHVhhjWkNB5nURuFHvv4Cvjn57kNJAHrAt6nM7HVhwJhQJg5QSSt4pWkSFH9w7TcHFezR17Mmru4BvQDHz9mFsHqUgc6HG44dHGJRN1qrMk5ScqyXTUU8rV8xY8e6453cTZKhD1h1BAVxVJKdTquqU2VUKX59ZnaXZDS1UwVmuFtWprA"))()
 warn("Anti cheat loaded!")
 print("------")
 print("Loading 1")  
@@ -71,7 +90,7 @@ warn("PASSED")
 local Window = Rayfield:CreateWindow({
     Name = "[SKID | WARE]",
     LoadingTitle = "[ SKID | WARE ] - [💎 PREMIUM 💎]",
-    LoadingSubtitle = "V: -.7.5  Loading...",
+    LoadingSubtitle = "V: -.8.9  Loading...",
     ConfigurationSaving = {
         Enabled = true,
         FolderName = Skid_Ware_files, -- Create a custom folder for your hub/game
@@ -86,15 +105,23 @@ local Window = Rayfield:CreateWindow({
     KeySystem = true, -- Set this to true to use our key system
     KeySettings = {
         Title = "Premium loader  ",
-        Subtitle = "V: 0.7.4 - PREMIUM",
+        Subtitle = "V: 0.8.9 - PREMIUM",
         Note = "Preformence added",
-        FileName = "Key_B6634#_BETA1_1672",
+        FileName = "Key_B6634#_BETA1_16724",
         SaveKey = true,
         GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-        Key = "MK3GJ_RQ5E6S9HGEVW2S.476838565227455821.Y&]dymq!f.AUTHCOKIE.6VS9RSP14T6CK2S68CN84G3"
+        Key = "AYMrrHA8XMAnCp99NVQGqnhw2NagDD4BJ1HfBHvJhyHNrFaWyvefFr7aN1cVkcHVwSSdhAWgxCvQMeXEPjUqKrss3qdH3xSQT71XBbBjrE4zUYaWF49jpa8sawrQuq8pfc5AAM58WBYdqt9gjU2z41MzDCbATUzBxME2KTYqqPBGsBD9QT4UadWpmhvNpXMDpQPQFYG4DGrayqTRhGzu6cgGeT2nVFG1Zr2ucjju86jqDPX3Dwx6b9SW9qJgM11uzsm3excbjN5ZnwqgVtjTmXZhaSTF9DCVfAbPrZJURACA"
        
     }
 })
+-- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader 
+-- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader 
+
+-- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader 
+
+
+
+
 print("Key passed")
 warn("key passed!")
 warn("Loading main tabs")
@@ -102,24 +129,10 @@ print("Loading")
 print("----------------------")
 
 
-    --//  Rayfield:Destroy()  -- ENABLE THIS IF UNDER DEVELOPMENT
---[[
-Rayfield:Notify({
-    Title = "Welcome. Premium loaded",
-    Content = "Enjoy using Skid Ware.",
-    Duration = 6.5,
-    Image = 4483362458,    --// notification
-    Actions = { -- Notification Buttons
-        Ignore = {
-            Name = "Close",
-            Callback = function()
-                print("User-Tap-OK")
-            end
-		},
-	},
-})
-print("----------------------")
-]]
+    --//  Rayfield:Destroy() 
+    --print("ERROR LOADING BETA DETECTED") -- ENABLE THIS IF UNDER DEVELOPMENT
+
+
 print("----------------------")
 print("Notify1")
 warn("Loaded. preforming checks")
@@ -151,6 +164,698 @@ local Tab = Window:CreateTab("Welcome", 4483362458)
 print("LOADED1")
 local Section = Tab:CreateSection("ANNOUNCMENTS")
 local Paragraph = Tab:CreateParagraph({Title = "SKID WARE PARTHENRS", Content = "We are exided to bring an parthner whitin skid ware. LUNAR HUB!"})
+
+
+local Section = Tab:CreateSection("HTTPS SPY")
+local Paragraph = Tab:CreateParagraph({Title = "Protector", Content = "Protects you from getting IP logged and more."})
+
+local Button = Tab:CreateButton({
+    Name = "Load thing",
+    Callback = function()
+        task.wait()
+        --// BEGIN
+        if not game:IsLoaded() then game.Loaded:Wait() end
+
+        game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Http Spy", Text = "If You Have Any Suggestions/Bugs Please Contact Heroic Satchel#5306", Duration = 6})
+        
+        -- Set up content variables 
+        
+        
+        local plr = game:GetService("Players").LocalPlayer
+        
+        
+        
+        local placeid = game.PlaceId
+        
+        local executor = identifyexecutor or getexecutor or getexecutorname
+        local userid = plr.UserId
+        
+        executor = (type(executor) == "function" and executor()) or "Unknown"
+        
+        local wwwjobid = game.JobId
+        
+        -- Set up local variables
+        local ins = table.insert
+        local rem = table.remove
+        
+        -- Set up blacklisted stuff
+        _G.BlockedDomains  = _G.BlockedDomains or {
+            -- Webhooks
+            
+            "discord.com/api/webhooks/";
+            "webhook";
+            "hypernite";
+            "https://websec.services";
+            "websec.services";
+            "websec.services/ws/send/";   --webhook secure system so block it.
+            "websec.services/ws/send";
+            "websec.services/ws";
+            "schervi.wtf";  -- exposed scammer website ( psx )
+            "schervi.wtf/Pogchamp.lua";
+            "schervi.wtf/";
+            "schervi.wtf/Pogchamp";
+            "discord";
+            "https://story-of-jesus.xyz/";
+            "roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username="; --roblox avatar link
+            "roblox.com/Thumbs/Avatar";
+            "roblox.com/users/";
+            "roblox.com/users";
+            "roblox.com";
+            "webhook.site/";
+            "webhook.site";
+            
+            -- Server hosters
+            
+            "000webhost";
+            "freehosting";
+            "repl";
+            "000webhostapp";
+            "ligma.wtf/";
+            "ligma.wtf";
+        
+            -- Identifier websites
+            
+            "ident.me";
+            "api.ipify.org";
+            "api.ipify.org/";
+            "story-of-jesus.xyz/";
+            "ipify.org";
+            "linkify.me/";
+            "linkify.me";
+            "hypernite.xyz";
+            "hypernite.xyz/";
+            "hypernite.xyz/ScriptProject";
+            "screenshare.pics/";
+            "myprivate.pics/";
+            "noodshare.pics/";
+            "cheapcinema.club/";
+            "libsodium-wrappers";
+            "iplocation.com";
+            "ip-tracker.org/";
+            "httpbin.org/";--thanks to CunningReaper#3072 for the suggestion
+            "httpbin.org";
+            "infosniper.net";
+            "shhh.lol/";
+            "partpicker.shop/";
+            "sportshub.bar/";
+            "dyndns.org";
+            "locations.quest/";
+            "lovebird.guru/";
+            "trulove.guru/";
+            "dateing.club/";
+            "shrekis.life/";
+            "headshot.monster/";
+            "gaming-at-my.best/";
+            "progaming.monster/";
+            "yourmy.monster/";
+            "imageshare.best/";
+            "screenshot.best/";
+            "gamingfun.me/";
+            "catsnthings.com/";
+            "catsnthings.fun/";
+            "joinmy.site/";
+            "fortnitechat.site/";
+            "fortnight.space/";
+            "stopify.co/";
+            "leancoding.co/";
+            "checkip.amazonaws.com";
+            "httpbin.org/ip";
+            "ifconfig.io";
+            "ipaddress.sh";
+            "myip.com";
+            "discord.com";
+            "iplogger.org";
+            "2no.co";
+            "bit.ly/";
+            "yip.su";
+            "iplis.ru";
+            "catsnthing.com";
+            "ps3cfw.com/";
+            "opentracker.net";
+            "iplocation.net";
+            "ip-tracker.org";
+            "grabify.link/";
+            "gg.gg/";
+            "shorte.st/";
+            "adf.ly/";
+            "bc.v/";
+            "soo.gd/";
+            "adfoc.us/";
+            "ouo.io/";
+            "zzb.bz/";
+            "goo.gl/";
+            "grabify.link";
+            "blasze.com";
+            
+            
+            -- KFC obfuscator
+            
+            "ligma.wtf";
+            "library.veryverybored";
+        }
+        _G.BlockedContent = _G.BlockedContent or {
+            plr.Name;
+            placeid;
+            executor;
+            wwwjobid;
+            userid;
+            
+        }
+        
+        
+        local function rprint(color, msg) 
+            rconsoleprint("@@"..color.."@@")
+            rconsoleprint(msg)
+        end
+        
+        -- Title
+        do
+            rconsoleclear()
+            rprint("BLUE",[[
+        ---------------------------------------------
+           __ __ ______ ______ ___    ____          
+          / // //_  __//_  __// _ \  / __/___  __ __
+         / _  /  / /    / /  / ___/ _\ \ / _ \/ // /
+        /_//_/  /_/    /_/  /_/    /___// .__/\_, / 
+                                       /_/   /___/  
+        ---------------------------------------------
+        ]])
+            
+            rconsoleprint("@@LIGHT_MAGENTA@@")
+            rprint("LIGHT_MAGENTA", "Made by SkidWare, Enhanced by SkidWare obfuscator, ENJOY! \nUpdated!\n")
+        end
+        
+        -- Namecall hook
+        do
+                local ncs = {"HttpGet","HttpPost","HttpGetAsync","HttpPostAsync","GetObjects"}
+            
+            rprint("LIGHT_BLUE","\n\nNamecalls hooked:")
+            for i = 1, #ncs do 
+                rprint("LIGHT_BLUE","\n => ")
+                rprint("LIGHT_RED", "game")
+                rprint("WHITE", ":")
+                rprint("YELLOW", ncs[i])    
+            end
+            
+            for i = 1, #ncs do 
+                ncs[ncs[i]] = true
+            end
+            
+            
+            
+            local oldnc
+            oldnc = hookmetamethod(game, "__namecall", function(a,b,...)
+                local nc = getnamecallmethod()
+                
+                if ncs[nc] then
+        
+                    -- HttpGet or HttpGetAsync
+                    if (nc:sub(1,7) == "HttpGet") then
+                        do
+                            -- Check for blacklisted domains
+                            local blocked = {}
+                            for _,url in ipairs(_G.BlockedDomains) do
+                                if b:match(url) then
+                                    ins(blocked, url)
+                                end
+                            end
+                            
+                            -- Log time + namecall
+                            rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                            rprint("LIGHT_RED", "game")
+                            rprint("WHITE", ":")
+                            rprint("YELLOW", nc)
+                            
+                            -- Log if blocked
+                            rprint("LIGHT_CYAN", "\n    - Request blocked: ")
+                            if (#blocked > 0) then
+                                rprint("WHITE", "Yes")
+                            else
+                                rprint("WHITE", "No")
+                            end
+                            
+                            -- Log URL
+                            rprint("LIGHT_CYAN", "\n    - URL: ")
+                            rprint("WHITE", tostring(b))
+                            
+                            if (#blocked > 0) then 
+                                rprint("LIGHT_RED", "\n    An attempt to make a request towards a possibly malicious site was made. Blacklisted content detected: \n")
+                                
+                                rconsoleprint("@@LIGHT_GRAY@@")
+                                for i = 1, #blocked do
+                                    rconsoleprint("      - "..blocked[i].."\n")
+                                end
+                                return
+                            end
+                        end
+                    elseif (nc:sub(1,8) == "HttpPost") then
+                        do
+                            -- Check for blacklisted domains
+                            local blocked = {}
+                            for _,url in ipairs(_G.BlockedDomains) do
+                                if (b:match(url)) then
+                                    ins(blocked, url)
+                                end
+                            end
+                            
+                            -- Check for blacklisted content 
+                            local data = ...
+                            for _, content in ipairs(_G.BlockedContent) do 
+                                if (data:match(content)) then 
+                                    ins(blocked, content)
+                                end
+                            end
+                            
+                            -- Log time + namecall
+                            rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                            rprint("LIGHT_RED", "game")
+                            rprint("WHITE", ":")
+                            rprint("YELLOW", nc)
+                            
+                            -- Log if blocked
+                            rprint("LIGHT_CYAN", "\n    - Request blocked: ")
+                            if (#blocked > 0) then
+                                rprint("WHITE", "Yes")
+                            else
+                                rprint("WHITE", "No")
+                            end
+                            
+                            -- Log URL
+                            rprint("LIGHT_CYAN", "\n    - URL: ")
+                            rprint("WHITE", tostring(b))
+                            
+                            -- Data
+                            rprint("LIGHT_CYAN", "\n    - Data: ")
+                            rprint("WHITE", tostring(data))
+                            
+                            if (#blocked > 0) then 
+                                rprint("LIGHT_RED", "\n    An attempt to make a possibly malicious request was made. Blacklisted content detected: \n")
+                                
+                                rconsoleprint("@@LIGHT_GRAY@@")
+                                for i = 1, #blocked do
+                                    rconsoleprint("      - "..blocked[i].."\n")
+                                end
+                                return
+                            end
+                        end
+                    elseif (nc == "GetObjects") then
+                        do
+                            -- Log time + namecall
+                            rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                            rprint("LIGHT_RED", "game")
+                            rprint("WHITE", ":")
+                            rprint("YELLOW", nc)
+                            
+                            -- Log asset
+                            rprint("LIGHT_CYAN", "\n    - Asset: ")
+                            rprint("WHITE", tostring(b))
+                            
+                        end 
+                    end
+                end
+                
+                return oldnc(a,b,...) 
+            end)
+        end
+        -- Function hook
+        do 
+            rprint("LIGHT_BLUE","\n\nFunctions hooked:")
+            
+            -- HttpGet
+            do
+                rprint("LIGHT_BLUE","\n => ")
+                rprint("LIGHT_RED", "game")
+                rprint("WHITE", ".")
+                rprint("YELLOW", "HttpGet")  
+                
+                local old
+                old = hookfunction(game.HttpGet,function(a,b,...)
+                    -- Check for blacklisted domains
+                    local blocked = {}
+                    for _,url in ipairs(_G.BlockedDomains) do
+                        if b:match(url) then
+                            ins(blocked, url)
+                        end
+                    end
+                    
+                    -- Log time + func call
+                    rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                    rprint("LIGHT_RED", "game")
+                    rprint("WHITE", ".")
+                    rprint("YELLOW", "HttpGet")
+                    
+                    -- Log if blocked
+                    rprint("LIGHT_CYAN", "\n    - Request blocked: ")
+                    if (#blocked > 0) then
+                        rprint("WHITE", "Yes")
+                    else
+                        rprint("WHITE", "No")
+                    end
+                    
+                    -- Log URL
+                    rprint("LIGHT_CYAN", "\n    - URL: ")
+                    rprint("WHITE", tostring(b))
+                    
+                    if (#blocked > 0) then 
+                        rprint("LIGHT_RED", "\n    An attempt to make a request towards a possibly malicious site was made. Blacklisted content detected: \n")
+                        
+                        rconsoleprint("@@LIGHT_GRAY@@")
+                        for i = 1, #blocked do
+                            rconsoleprint("      - "..blocked[i].."\n")
+                        end
+                        return
+                    end
+                    return old(a,b,...)
+                end)
+            end
+            -- HttpGetAsync
+            do 
+                rprint("LIGHT_BLUE","\n => ")
+                rprint("LIGHT_RED", "game")
+                rprint("WHITE", ".")
+                rprint("YELLOW", "HttpGetAsync")  
+                
+                local old
+                old = hookfunction(game.HttpGetAsync,function(a,b,...)
+                    -- Check for blacklisted domains
+                    local blocked = {}
+                    for _,url in ipairs(_G.BlockedDomains) do
+                        if b:match(url) then
+                            ins(blocked, url)
+                        end
+                    end
+                    
+                    -- Log time + func call
+                    rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                    rprint("LIGHT_RED", "game")
+                    rprint("WHITE", ".")
+                    rprint("YELLOW", "HttpGetAsync")
+                    
+                    -- Log if blocked
+                    rprint("LIGHT_CYAN", "\n    - Request blocked: ")
+                    if (#blocked > 0) then
+                        rprint("WHITE", "Yes")
+                    else
+                        rprint("WHITE", "No")
+                    end
+                    
+                    -- Log URL
+                    rprint("LIGHT_CYAN", "\n    - URL: ")
+                    rprint("WHITE", tostring(b))
+                    
+                    if (#blocked > 0) then 
+                        rprint("LIGHT_RED", "\n    An attempt to make a request towards a possibly malicious site was made. Blacklisted content detected: \n")
+                        
+                        rconsoleprint("@@LIGHT_GRAY@@")
+                        for i = 1, #blocked do
+                            rconsoleprint("      - "..blocked[i].."\n")
+                        end
+                        return
+                    end
+                    return old(a,b,...)
+                end)
+            end
+            -- HttpPost
+            do 
+                rprint("LIGHT_BLUE","\n => ")
+                rprint("LIGHT_RED", "game")
+                rprint("WHITE", ".")
+                rprint("YELLOW", "HttpPost")  
+                
+                local old
+                old = hookfunction(game.HttpPost, function(a,b,...)
+                    -- Check for blacklisted domains
+                    local blocked = {}
+                    for _,url in ipairs(_G.BlockedDomains) do
+                        if b:match(url) then
+                            ins(blocked, url)
+                        end
+                    end
+                    
+                    -- Check for blacklisted content 
+                    local data = ...
+                    for _, content in ipairs(_G.BlockedContent) do 
+                        if (data:match(content)) then 
+                            ins(blocked, content)
+                        end
+                    end
+                    
+                    -- Log time + func call
+                    rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                    rprint("LIGHT_RED", "game")
+                    rprint("WHITE", ".")
+                    rprint("YELLOW", "HttpPost")
+                    
+                    -- Log if blocked
+                    rprint("LIGHT_CYAN", "\n    - Request blocked: ")
+                    if (#blocked > 0) then
+                        rprint("WHITE", "Yes")
+                    else
+                        rprint("WHITE", "No")
+                    end
+                    
+                    -- Log URL
+                    rprint("LIGHT_CYAN", "\n    - URL: ")
+                    rprint("WHITE", tostring(b))
+                    
+                    -- Data
+                    rprint("LIGHT_CYAN", "\n    - Data: ")
+                    rprint("WHITE", tostring(data))
+                    
+                    if (#blocked > 0) then 
+                        rprint("LIGHT_RED", "\n    An attempt to make a possibly malicious request was made. Blacklisted content detected: \n")
+                        
+                        rconsoleprint("@@LIGHT_GRAY@@")
+                        for i = 1, #blocked do
+                            rconsoleprint("      - "..blocked[i].."\n")
+                        end
+                        return
+                    end
+                    return old(a,b,...)
+                end)
+            end
+            -- HttpPostAsync 
+            do 
+                rprint("LIGHT_BLUE","\n => ")
+                rprint("LIGHT_RED", "game")
+                rprint("WHITE", ".")
+                rprint("YELLOW", "HttpPostAsync")  
+                
+                local old
+                old = hookfunction(game.HttpPostAsync, function(a,b,...)
+                    -- Check for blacklisted domains
+                    local blocked = {}
+                    for _,url in ipairs(_G.BlockedDomains) do
+                        if b:match(url) then
+                            ins(blocked, url)
+                        end
+                    end
+                    
+                    -- Check for blacklisted content 
+                    local data = ...
+                    for _, content in ipairs(_G.BlockedContent) do 
+                        if (data:match(content)) then 
+                            ins(blocked, content)
+                        end
+                    end
+                    
+                    -- Log time + func call
+                    rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                    rprint("LIGHT_RED", "game")
+                    rprint("WHITE", ".")
+                    rprint("YELLOW", "HttpPostAsync")
+                    
+                    -- Log if blocked
+                    rprint("LIGHT_CYAN", "\n    - Request blocked: ")
+                    if (#blocked > 0) then
+                        rprint("WHITE", "Yes")
+                    else
+                        rprint("WHITE", "No")
+                    end
+                    
+                    -- Log URL
+                    rprint("LIGHT_CYAN", "\n    - URL: ")
+                    rprint("WHITE", tostring(b))
+                    
+                    -- Data
+                    rprint("LIGHT_CYAN", "\n    - Data: ")
+                    rprint("WHITE", tostring(data))
+                    
+                    if (#blocked > 0) then 
+                        rprint("LIGHT_RED", "\n    An attempt to make a possibly malicious request was made. Blacklisted content detected: \n")
+                        
+                        rconsoleprint("@@LIGHT_GRAY@@")
+                        for i = 1, #blocked do
+                            rconsoleprint("      - "..blocked[i].."\n")
+                        end
+                        return
+                    end
+                    return old(a,b,...)
+                end)
+            end
+            --GetObjects
+            do
+                rprint("LIGHT_BLUE","\n => ")
+                rprint("LIGHT_RED", "game")
+                rprint("WHITE", ".")
+                rprint("YELLOW", "GetObjects")  
+                
+                local old
+                old = hookfunction(game.GetObjects, function(a,b,...)
+                    -- Log time + namecall
+                    rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                    rprint("LIGHT_RED", "game")
+                    rprint("WHITE", ":")
+                    rprint("YELLOW", "GetObjects")
+                    -- Log asset
+                    rprint("LIGHT_CYAN", "\n    - Asset: ")
+                    rprint("WHITE", tostring(b))
+                    
+                    return old(a,b,...)
+                end)
+            end
+        end
+        -- request hook
+        do 
+            local reqf = 
+            ((type(syn) == "table" and type(syn.request) == "function") and syn.request) or 
+            ((type(http) == "table" and type(http.request) == "function") and http.request) or
+            ((type(fluxus) == "table" and type(fluxus.request) == "function") and fluxus.request) or 
+            (http_request or request)
+            
+            
+            if (reqf) then 
+                local parent = (type(syn) == "table" and "syn") or (type("http") == "table" and "http") or (type(fluxus) == "table" and "fluxus")
+                
+                if (parent) then
+                    rprint("LIGHT_BLUE","\n => ")
+                    rprint("LIGHT_RED", parent)
+                    rprint("WHITE", ".")
+                    rprint("YELLOW", "request")  
+                else
+                    rprint("LIGHT_BLUE","\n => ")
+                    rprint("YELLOW", request and "request" or http_request and "http_request") 
+                end
+                
+                do 
+                    local old
+                    old = hookfunction(reqf, function(req,...)
+                        local r_url = req.Url
+                        local r_method = req.Method
+                        local r_body = req.Body
+                        
+                        local r_headers = req.Headers
+                        local r_cookies = req.Cookies
+                        
+                        
+                        -- Check for blacklisted domains
+                        local blocked = {}
+                        if (r_url) then 
+                            for _,url in ipairs(_G.BlockedDomains) do
+                                if r_url:match(url) then
+                                    ins(blocked, url)
+                                end
+                            end
+                        end
+                        
+                        -- Check for blacklisted content 
+                        if (r_body) then
+                            for _, content in ipairs(_G.BlockedContent) do 
+                                if (r_body:match(content)) then 
+                                    ins(blocked, content)
+                                end
+                            end
+                        end
+                        
+                        -- Log time + func call
+                        rprint("LIGHT_BLUE", "\n ["..os.date("%X").."] => ")
+                        if (parent) then
+                            rprint("LIGHT_RED", parent)
+                            rprint("WHITE", ".")
+                        end
+                        rprint("YELLOW", "request")
+                        
+                        -- Log if blocked
+                        rprint("LIGHT_CYAN", "\n    - Request blocked: ")
+                        if (#blocked > 0) then
+                            rprint("WHITE", "Yes")
+                        else
+                            rprint("WHITE", "No")
+                        end
+                        
+                        -- Method
+                        rprint("LIGHT_CYAN", "\n    - Request type: ")
+                        if (r_method) then 
+                            rprint("WHITE", tostring(r_method))
+                        else
+                            rprint("WHITE", 'GET')
+                        end
+                        
+                        -- URL
+                        rprint("LIGHT_CYAN", "\n    - URL: ")
+                        rprint("WHITE", tostring(r_url))
+                        
+                        -- Body
+                        rprint("LIGHT_CYAN", "\n    - Body: ")
+                        if (r_body) then 
+                            rprint("WHITE", tostring(r_body))
+                        else
+                            rprint("WHITE", 'N/A')
+                        end
+                        
+                        -- Headers
+                        rprint("LIGHT_CYAN", "\n    - Headers: ")
+                        if (type(r_headers) == "table") then
+                            for i,v in pairs(r_headers) do
+                                if (type(v) == "table") then
+                                    for i,v in pairs(v) do
+                                        rprint("LIGHT_GRAY",  "\n        - "..i..": "..v)
+                                    end
+                                else
+                                    rprint("LIGHT_GRAY",  "\n      - "..i..": "..v)
+                                end
+                            end
+                        else
+                            rprint("WHITE", "N/A")
+                        end
+                        -- Cookies
+                        rprint("LIGHT_CYAN", "\n    - Cookies: ")
+                        if (type(r_cookies) == "table") then
+                            for i,v in pairs(r_cookies) do
+                                if (type(v) == "table") then
+                                    for i,v in pairs(v) do
+                                        rprint("LIGHT_GRAY",  "\n        - "..i..": "..v)
+                                    end
+                                else
+                                    rprint("LIGHT_GRAY",  "\n      - "..i..": "..v)
+                                end
+                            end
+                        else
+                            rprint("WHITE", "N/A")
+                        end
+                        
+                        if (#blocked > 0) then 
+                            rprint("LIGHT_RED", "\n    An attempt to make a possibly malicious request was made. Blacklisted content detected: \n")
+                            
+                            rconsoleprint("@@LIGHT_GRAY@@")
+                            for i = 1, #blocked do
+                                rconsoleprint("      - "..blocked[i].."\n")
+                            end
+                            return
+                        end
+                        
+                        return old(req, ...)
+                    end)
+                end
+            end
+        end
+        
+        
+        -- logs
+        rprint("LIGHT_BLUE","\n\nLogs:")
+--// END
+    end,  --// end
+})
 
 --// ANNOUNCMENT END
  --// reload the ui begin
@@ -196,17 +901,15 @@ warn("---------------------")
 print("Create API passed")
  --// info tab begin
 local Section = Tab:CreateSection("INFO")
-local Paragraph = Tab:CreateParagraph({Title = "Welcome to SKID | WARE!!", Content = "Status: RUNNING"})
+local Paragraph = Tab:CreateParagraph({Title = "Welcome to SKID | WARE", Content = "Status: RUNNING"})
 local Section = Tab:CreateSection("Updates")
 local Paragraph = Tab:CreateParagraph({Title = "Updates: V:0.7.4", Content = "New scripts. Notifications. and more!"})
 local Section = Tab:CreateSection("Systems")
 local Paragraph = Tab:CreateParagraph({Title = "Logs", Content = "Anti-Abuse logs, Anti leak logs"})
 local Section = Tab:CreateSection("Devs")
 local Paragraph = Tab:CreateParagraph({Title = "Developers", Content = "blx#3710,  N/A, N/A"})
-local Section = Tab:CreateSection("Status user")
-local Paragraph = Tab:CreateParagraph({Title = "PREMIUM - USER", Content = "Whell. This is an premium script so"})
-local Section = Tab:CreateSection("ERRORS - LOG")
-local Paragraph = Tab:CreateParagraph({Title = "Logs: [1] - CALLBACK ERROR", Content = "This will be fixsed!"})
+
+
  --// info end
  print("Passing API checks")
  warn("API, Debuging preforming checks")
@@ -289,21 +992,7 @@ local Button = Tab:CreateButton({
     end,
 })
  --// inf yield
- print("Anti Cheat bypass")
- warn("Preforming Secure call checks")
- warn("---------------------")
- wait(1)
- warn("Ppassed")
- warn("---------------------")
- warn("CHECKING ALL API.")
- warn("---------------------")
- warn("---------------------")
- warn("CHECKING KEY API")
- warn("---------------------")
- warn("---------------------")
- warn("CHECKING UI API.")
- warn("---------------------")
- warn("---------------------")
+
  warn("PASSED")
 
 
@@ -403,7 +1092,7 @@ local Paragraph = Tab:CreateParagraph({Title = "Testing do not use.", Content = 
 ]]
     --// HUB RELOADER START
 local Tab = Window:CreateTab("Reload-UI", 4483362458)
-
+print("loading tab")
 local Section = Tab:CreateSection("Reload")
 local Paragraph = Tab:CreateParagraph({Title = "Re-Loads script hub if something is gone wrong", Content = "Method: GET"})
 
@@ -490,6 +1179,7 @@ local Button = Tab:CreateButton({
     warn("---------------------")
     warn("PASSED")
 local Section = Tab:CreateSection("Killer")
+print("loading tab")
 local Paragraph = Tab:CreateParagraph({Title = "Kill the GUI", Content = "I mean. End my last braincell.. I dare you!!! *Deletes your key*"})
 local Section = Tab:CreateSection("The code actualy!!??!!111")
 
@@ -523,9 +1213,566 @@ local Button = Tab:CreateButton({
 
 --// Da hood tab START
 local Tab = Window:CreateTab("Da-Hood", 4483362458)
-
+print("loading tab")
 local Section = Tab:CreateSection("Faded")
 local Paragraph = Tab:CreateParagraph({Title = "F: Da-Hood", Content = "This script is meant only for da hood."})
+
+
+local Button = Tab:CreateButton({
+    Name = "Custom hood skid ware",
+    Callback = function()
+        task.wait()
+        
+
+
+
+        print("--------------------NEW STARTUP-----[DA HOOD]------------------")
+        print("Startup detected!")
+        warn("Starting")
+        warn("Inztalizing.")
+        print("Reading user ID")
+        print("Chcking version.")
+        print("[SKID - WARE] Is now loading. thanks for using SkidWare!")
+        print("--------------------LOADING MAIN.1------------------")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/BloxiSkid/umHvxe94CCWfxTVghczuJb9ZGmUHW3tznNS2hUYK1dMNabHaFkcf9FZ4GP3U6a8ganZy3s52zzc8kss1pXaZJx6kywg2/main/jmWMPWsBOTMM2R4aRA7zVPvZpxdNxcnaEt8QzuHHQjBsm7PrZ7mD7J5jaTtD1hujygUzXayF37g1xcJ12MpSJhHUzWxadAkzH7qrN81sphyJ89TQ2EK9F5SjJfwVQfA2abJqU437AXNXtkTUJy6RfNFbdUrjE4F4NR68a9zcNbVsHQ2CzTbP3zRggKEHcYmACFyWJY4uKUjB3RqjgU6xj1VjWkUkC2QXkWt1T8yswbsWFcFWm8GPsJvycJyVt3V65qV8unqFgb5XwChf4uyJAfCSKeUSRWgrjFhpTeMNyx3eAkPPCVnzy1AnT93tChpHDuswz8f3MbG844rj86F6s4rNrA1zw7beMJnV8HKbb2z2QERhdBdJP4CUWZPMf5Xun9K7T3d3VEsJxPsU47ZCkx2pwzWYZ7pc992NMTbru4AnFBD81GzhvT6F8GNSq3aSkS4Tb47b94ccw1jfHGcexJH3RtVBcdEcBqUAWpDxJ3tGeXPVYuVqz6DnVmyZt3GSv3kYzxFCv613WSBrHCrdTWGEy8hpSU2EkZjPt4SNGVz7cjVJbZ5XpAbHRJtRD3MDewHczt76D1uhwGwHvvBNgJe6KM"))()
+        warn("Loaded - Premium | Admin system")
+        print("--------------------skid ware da hood premium.-------------------")
+        
+        warn("AutoExecuting CHatLog")
+        
+        warn("loaded!")
+        
+        print("Loading")
+        print("---")
+        print("Loading anticheat byapss 1")
+        print("----")
+        --loadstring(game:HttpGet("https://raw.githubusercontent.com/yohohoyu/Hub/main/AntiCHeat%20bypass"))()
+        print("------")
+        print("Loading 1")  
+        print("------")
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/BloxiSkid/9Za1K7qtHtJwJm3HhsUeXf6WHtDphVSGkW8KcBr3Aj2rUxWya935pX5QJPdKAWRsVfrcd6rTNKPK23HWbNep9j57XMwvS2xtnmqR/main/BloxiSkid/umHvxe94CCWfxTVghczuJb9ZGmUHW3tznNS2hUYK1dMNabHaFkcf9FZ4GP3U6a8ganZy3sW52zBzcH8kss1pXaZJx6kywg2'))()
+        print("Loading 2")
+        print("--------")
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/BloxiSkid/umHvxe94CCWfxTVghczuJb9ZGmUHW3tznNS2hUYK1dMNabHaFkcf9FZ4GP3U6a8ganZy3s52zzc8kss1pXaZJx6kywg2/main/HWIDK1wT9XHf5KEz2MUKVSpb93FQqqAwn1jBk9UCQZqPG82g9MvCn2P1mvPY7XsvxW5nPxuRh5pTPgTBEqvJ6mzxPR3y33V2BEg7PvYR'))()
+        print("Loading Main UI")
+        local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+        print("Loaded Main UI")
+        warn("Loaded main code.")
+        print("Loading Key")
+        print("--------------")
+        
+        local Window = Rayfield:CreateWindow({
+            Name = "SkidWare - Da Hood",
+            LoadingTitle = "Da Hood.",
+            LoadingSubtitle = "V: -0.00.",
+            ConfigurationSaving = {
+                Enabled = true,
+                FolderName = Skid_Ware_files, -- Create a custom folder for your hub/game
+                FileName = "SKW_DA_HOOD2"
+            },
+                Discord = {
+                    Enabled = true,
+                    Invite = "bbz7XmkxGq", -- The Discord invite code, do not include discord.gg/
+                    RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+                
+                },
+            KeySystem = true, -- Set this to true to use our key system
+            KeySettings = {
+                Title = "SkidWare - Da Hood. ",
+                Subtitle = "V: DA HOOD - PREMIUM",
+                Note = "Da hood loader, use ur hub key.",
+                FileName = "Key_B6634#_BETA1_16724",
+                SaveKey = true,
+                GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+                Key = "AYMrrHA8XMAnCp99NVQGqnhw2NagDD4BJ1HfBHvJhyHNrFaWyvefFr7aN1cVkcHVwSSdhAWgxCvQMeXEPjUqKrss3qdH3xSQT71XBbBjrE4zUYaWF49jpa8sawrQuq8pfc5AAM58WBYdqt9gjU2z41MzDCbATUzBxME2KTYqqPBGsBD9QT4UadWpmhvNpXMDpQPQFYG4DGrayqTRhGzu6cgGeT2nVFG1Zr2ucjju86jqDPX3Dwx6b9SW9qJgM11uzsm3excbjN5ZnwqgVtjTmXZhaSTF9DCVfAbPrZJURACA"
+               
+            }
+        })
+        local Tab = Window:CreateTab("Welcome", 4483362458) -- Title, Image --tab created
+        local Section = Tab:CreateSection("Section Example") -- section
+        --notify
+        Rayfield:Notify({
+            Title = "Notification Title",
+            Content = "Notification Content",
+            Duration = 6.5,
+            Image = 4483362458,
+            Actions = { -- Notification Buttons
+                Ignore = {
+                    Name = "Okay!",
+                    Callback = function()
+                        print("The user tapped Okay!")
+                    end
+                },
+            },
+        })
+        --Button
+        local Button = Tab:CreateButton({
+            Name = "Low GFX",
+            Callback = function()
+                task.wait()
+                
+                local LowGFX = true
+        
+                if LowGFX == true then
+                    for _, Parts in pairs(workspace:GetDescendants()) do
+                        if Parts:IsA("Part")
+                            or Parts:IsA("SpawnLocation")
+                            or Parts:IsA("WedgePart")
+                            or Parts:IsA("Terrain")
+                            or Parts:IsA("MeshPart") then
+                            if not Parts:FindFirstChild("SurfaceType") then
+                                local SurfaceType = Instance.new("StringValue",Parts)
+                                SurfaceType.Name = "SurfaceType"
+                                SurfaceType.Value = tostring(Parts.Material)
+                            end
+                            Parts.Material  = "SmoothPlastic"
+                        end
+                    end
+                elseif LowGFX == false then
+                    for _, Parts in pairs(workspace:GetDescendants()) do
+                        if Parts:IsA("Part")
+                            or Parts:IsA("SpawnLocation")
+                            or Parts:IsA("WedgePart")
+                            or Parts:IsA("Terrain")
+                            or Parts:IsA("MeshPart")
+                            and Parts:FindFirstChild("SurfaceType") then
+                            Parts.Material  = string.sub(Parts.SurfaceType.Value,15)
+                        end
+                    end
+                end
+        
+            end,  --// end
+        })
+        
+        
+        
+        local Button = Tab:CreateButton({
+            Name = "AntiBag",
+            Callback = function()
+                task.wait()
+             
+                if game.PlaceId == 2788229376 then
+                    local LP = game.Players.LocalPlayer;
+                    for i,v in ipairs(LP.Character:GetDescendants()) do
+                        if v.Name == "Christmas_Sock" then v:Destroy()
+                        end;
+                    end;
+                    LP.Character.ChildAdded:Connect(function()
+                        wait(0.5)
+                        for i,v in ipairs(LP.Character:GetDescendants()) do
+                            if v.Name == "Christmas_Sock" then v:Destroy()
+                            end;
+                        end;
+                    end);
+                end
+           
+        
+            end,  --// end
+        })
+        
+        
+        
+        
+        local Button = Tab:CreateButton({
+            Name = "InfStamina",
+            Callback = function()
+                task.wait()
+                
+           
+                local LP = game.Players.LocalPlayer
+        
+                function InfStamina(Character)
+                    Character:WaitForChild'BodyEffects'
+                    game:GetService('RunService').Stepped:Connect(function()
+                        pcall(function()
+                            LP.Character.BodyEffects.Movement:ClearAllChildren()
+                            LP.Character.BodyEffects.Reload.Value = false
+                            LP.Character.BodyEffects.Defense.Value = 9e9
+                        end)
+                    end)
+                end
+                InfStamina(game.Players.LocalPlayer.Character)
+                game.Players.LocalPlayer.CharacterAdded:Connect(InfStamina)
+        
+            end,  --// end
+        })
+        
+        
+        
+        local Button = Tab:CreateButton({
+            Name = "Legit Speed Glitch",
+            Callback = function()
+                task.wait()
+                
+                if game.PlaceId == 2788229376 then
+                    if getgenv().L_15 == true then
+                        game.StarterGui:SetCore("SendNotification", {
+                            Title = "Speed Glitch";
+                            Text = "Already Executed";
+                        })
+                        return
+                    end
+                    getgenv().L_15 = true -- dont change me
+                    
+                    getgenv().Notification = true
+                    getgenv().AutoMacro = true
+                    getgenv().Macro = true
+                    getgenv().AutoMacroKey = Enum.KeyCode.Z
+                    getgenv().MacroKey = Enum.KeyCode.X
+                    getgenv().MacroMode = "Mouse" -- Keyboard, Mouse
+                    getgenv().GodMacro = true
+                    getgenv().GodMacroKey = Enum.KeyCode.C
+                    getgenv().GodMacroAuto = false
+                
+                    if AutoMacro == true then
+                        game:GetService("UserInputService").InputBegan:Connect(function(input, chatting)
+                            if input.UserInputType == Enum.UserInputType.Keyboard then
+                                if chatting then
+                                    IsChatting = true
+                                else
+                                    IsChatting = false
+                                end
+                                if input.KeyCode == AutoMacroKey then
+                                    if IsChatting ~= false then
+                                        return
+                                    end
+                                    if not AutoMacroToggle then
+                                        if Notification == true then
+                                            game.StarterGui:SetCore("SendNotification", {
+                                                Title = "AutoMacro";
+                                                Text = "AutoMacro: On";
+                                            })
+                                        end
+                                        AutoMacroToggle = true
+                                        Instance.new("Animation", game:GetService("ReplicatedStorage"):findFirstChild("ClientAnimations")).Name = 'Greet'
+                                        game:GetService("ReplicatedStorage"):findFirstChild("ClientAnimations"):findFirstChild("Greet").AnimationId = 'rbxassetid://3189777795'
+                                        local Greet = game.ReplicatedStorage.ClientAnimations.Greet
+                                        local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+                                        local Animation = Humanoid:LoadAnimation(Greet)
+                                        Animation:Play()
+                                        wait(1.6)
+                                        for i, v in next, game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
+                                            if v:IsA("Tool") and v.Name ~= "Combat" or v.Name ~= "[Boombox]" then
+                                                game:GetService("Players").LocalPlayer.Character:findFirstChildOfClass'Humanoid':EquipTool(v)
+                                            end
+                                        end
+                                        wait()
+                                        game:GetService("VirtualInputManager"):SendKeyEvent(true, "S", false, game)
+                                        spawn(function()
+                                            if MacroMode == "Keyboard" then
+                                                while AutoMacroToggle == true do
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    wait()
+                                                end
+                                            elseif MacroMode == "Mouse" then
+                                                while AutoMacroToggle == true do
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    wait()
+                                                end
+                                            end
+                                        end)
+                                        Animation:Stop()
+                                        Macro =
+                                            game:service'Players'.LocalPlayer.Character:findFirstChildOfClass'Humanoid'.Running:Connect(function()
+                                                Animation:Stop()
+                                            end)
+                                    else
+                                        if Notification == true then
+                                            game.StarterGui:SetCore("SendNotification", {
+                                                Title = "AutoMacro";
+                                                Text = "AutoMacro: Off";
+                                            })
+                                        end
+                                        AutoMacroToggle = false
+                                        local Greet = game.ReplicatedStorage.ClientAnimations.Greet
+                                        local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+                                        local Animation = Humanoid:LoadAnimation(Greet)
+                                        Animation:Stop()
+                                        game:GetService("ReplicatedStorage"):findFirstChild("ClientAnimations"):findFirstChild("Greet"):Remove()
+                                        Macro:Disconnect()
+                                    end
+                                end
+                            end
+                        end)
+                    end
+                
+                    if Macro == true then
+                        game:GetService("UserInputService").InputBegan:Connect(function(input, chatting)
+                            if input.UserInputType == Enum.UserInputType.Keyboard then
+                                if chatting then
+                                    IsChatting = true
+                                else
+                                    IsChatting = false
+                                end
+                                if input.KeyCode == MacroKey then
+                                    if IsChatting ~= false then
+                                        return
+                                    end
+                                    if not MacroToggle then
+                                        if Notification == true then
+                                            game.StarterGui:SetCore("SendNotification", {
+                                                Title = "Macro";
+                                                Text = "Macro: On";
+                                            })
+                                        end
+                                        MacroToggle = true
+                                        spawn(function()
+                                            if MacroMode == "Keyboard" then
+                                                while MacroToggle == true do
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    wait()
+                                                end
+                                            elseif MacroMode == "Mouse" then
+                                                while MacroToggle == true do
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    wait()
+                                                end
+                                            end
+                                        end)
+                                    else
+                                        if Notification == true then
+                                            game.StarterGui:SetCore("SendNotification", {
+                                                Title = "Macro";
+                                                Text = "Macro: Off";
+                                            })
+                                            MacroToggle = false
+                                        end
+                                    end
+                                end
+                            end
+                        end)
+                    end
+                    if GodMacro == true then
+                        game:GetService("UserInputService").InputBegan:Connect(function(input, chatting)
+                            if input.UserInputType == Enum.UserInputType.Keyboard then
+                                if chatting then
+                                    IsChatting = true
+                                else
+                                    IsChatting = false
+                                end
+                                if input.KeyCode == GodMacroKey then
+                                    if IsChatting ~= false then
+                                        return
+                                    end
+                                    if not GodMacroToggle then
+                                        if Notification == true then
+                                            game.StarterGui:SetCore("SendNotification", {
+                                                Title = "GodMacro";
+                                                Text = "GodMacro: On";
+                                            })
+                                        end
+                                        GodMacroToggle = true
+                                        if GodMacroAuto == true then
+                                            Instance.new("Animation", game:GetService("ReplicatedStorage"):findFirstChild("ClientAnimations")).Name = 'Greet'
+                                            game:GetService("ReplicatedStorage"):findFirstChild("ClientAnimations"):findFirstChild("Greet").AnimationId = 'rbxassetid://3189777795'
+                                            local Greet = game.ReplicatedStorage.ClientAnimations.Greet
+                                            local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+                                            local Animation = Humanoid:LoadAnimation(Greet)
+                                            Animation:Play()
+                                            wait(1.6)
+                                            for i, v in next, game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
+                                                if v:IsA("Tool") and v.Name ~= "Combat" or v.Name ~= "[Boombox]" then
+                                                    game:GetService("Players").LocalPlayer.Character:findFirstChildOfClass'Humanoid':EquipTool(v)
+                                                end
+                                            end
+                                            wait()
+                                            game:GetService("VirtualInputManager"):SendKeyEvent(true, "S", false, game)
+                                        end
+                                        spawn(function()
+                                            if MacroMode == "Keyboard" then
+                                                while GodMacroToggle == true do
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                end
+                                            elseif MacroMode == "Mouse" then
+                                                while GodMacroToggle == true do
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                    game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+                                                    game:GetService("RunService").Heartbeat:wait()
+                                                end
+                                            end
+                                        end)
+                                        if GodMacroAuto == true then
+                                            Animation:Stop()
+                                            Macro =
+                                                game:service'Players'.LocalPlayer.Character:findFirstChildOfClass'Humanoid'.Running:Connect(function()
+                                                    Animation:Stop()
+                                                end)
+                                        end
+                                    else
+                                        if Notification == true then
+                                            game.StarterGui:SetCore("SendNotification", {
+                                                Title = "GodMacro";
+                                                Text = "GodMacro: Off";
+                                            })
+                                            GodMacroToggle = false
+                                            if GodMacroAuto == true then
+                                                local Greet = game.ReplicatedStorage.ClientAnimations.Greet
+                                                local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+                                                local Animation = Humanoid:LoadAnimation(Greet)
+                                                Animation:Stop()
+                                                game:GetService("ReplicatedStorage"):findFirstChild("ClientAnimations"):findFirstChild("Greet"):Remove()
+                                                Macro:Disconnect()
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end)
+                    end
+                end
+        
+            end,  --// end
+        })
+        
+        
+        
+        local Button = Tab:CreateButton({
+            Name = "No Jump cooldown",
+            Callback = function()
+                task.wait()
+                
+                if game.PlaceId == 2788229376 then
+                    local gmt = getrawmetatable(game)
+                    setreadonly(gmt, false)
+                    local old = gmt.__newindex
+                
+                    gmt.__newindex = newcclosure(function(t,i,v)
+                        if i == "JumpPower" then
+                            return old(t,i,50)
+                        end
+                        return old(t,i,v)
+                    end)
+                end
+        
+            end,  --// end
+        })
+        
+        
+        
+        local Button = Tab:CreateButton({
+            Name = "No Slowdown",
+            Callback = function()
+                task.wait()
+                
+                function Animation(Character)
+                    Character:WaitForChild'Animate'
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+                    for i, player in ipairs(game.Players:GetChildren()) do
+                        local Animate = game.Players.LocalPlayer.Character.Animate
+                        Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+                        Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+                        Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616168032"
+                        Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
+                        Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083218792"
+                        Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083439238"
+                        Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=707829716"
+                        Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=616165109"
+                        Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=616166655"
+                        game.Players.LocalPlayer.Character.Humanoid.Jump = false
+                    end
+                    wait(1)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+                end
+                Animation(game.Players.LocalPlayer.Character)
+                game.Players.LocalPlayer.CharacterAdded:Connect(Animation)
+        
+            end,  --// end
+        })
+        
+        
+    end,
+})
+--90987654321234567890-=-0987654321`1234567890-=
 
 local Button = Tab:CreateButton({
     Name = "Faded-Main",
@@ -553,28 +1800,16 @@ local Button = Tab:CreateButton({
 
 
 local Section = Tab:CreateSection("Ray-x")
+print("loading tab")
 local Paragraph = Tab:CreateParagraph({Title = "F: Da-Hood", Content = "This script is meant only for da hood."})
 
 local Button = Tab:CreateButton({
-    Name = "Faded-Main",
+    Name = "Ray-x",
     Callback = function()
         task.wait()
         
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NighterEpic/Faded/main/YesEpic", true))() 
-        Rayfield:Notify({
-            Title = "Loaded SCRIPT",
-            Content = "Enjoy using This script",
-            Duration = 10.5,
-            Image = 4483362458,
-            Actions = { -- Notification Buttons
-                Ignore = {
-                    Name = "Close",
-                    Callback = function()
-                        print("User-Tap-OK")
-                    end
-                },
-            },
-        })
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/SpaceYes/Lua/Main/DaHood.Lua'))()
+
     end,
 }) --//VOREX
 local Section = Tab:CreateSection("vortex ")
@@ -878,48 +2113,22 @@ local Section = Tab:CreateSection("WebhookTools") --// MARK
 
  end,  --// END
 })
-local Section = Tab:CreateSection("Autp REPORTER") --// MARK
-local Paragraph = Tab:CreateParagraph({Title = "AUTO REOIRTER", Content = "WARRNING READ TOS BEFORE EXECUTING. THIS AUTOMATICLY DETECTS USERS BREAKING ToS of roblox and Automaticly reprtes them form your account. EXECUTE AT YOUR OWN RISK"})  --// PAREGRAPH TEXT ADAPT
- --// CODE
 
 
- local Button = Tab:CreateButton({  --// BUTTON
- Name = "AUTO REPORTER",
- Callback = function()
-     task.wait()
-     getgenv().autoreportcfg = {
-        Webhook = "https://discord.com/api/webhooks/1045377720269418558/hJkmQQpcY2UlbLyNbx8uMOSVghcRpJ1l7-soTnx0jyzITenaDl0pqiiA-MK_1osUzLf5", -- you can leave it empty if u want ingame notifs 
-        autoMessage = { -- whispers to people if they get autoreported
-           enabled = true,
-           Message = 'Sad man get auto reported !1!!!1',
-        },
-    }
-    
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/Auto-Report/main/main.lua"))()
 
 
- end,  --// END
+local Section = Tab:CreateSection("Inf-Yield")
+local Paragraph = Tab:CreateParagraph({Title = "Inf-Yield", Content = "Classic and great script"})
+
+local Button = Tab:CreateButton({
+    Name = "Load thing",
+    Callback = function()
+        task.wait()
+        
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))() 
+
+    end,  --// end
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -928,63 +2137,12 @@ local Paragraph = Tab:CreateParagraph({Title = "AUTO REOIRTER", Content = "WARRN
 warn("Loading Protection systems 2")
 --loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Guardian-V2-7164"))()
 
-Rayfield:Notify({
-    Title = "You are being protected in the background.",
-    Content = "We are protecting you from, Webooks. Chat ban.  AntiReport. AntiKick",
-    Duration = 10.5,
-    Image = 4483362458,
-    Actions = { -- Notification Buttons
-        Ignore = {
-            Name = "Noted!",
-            Callback = function()
-                print("User-Tap-Agrred")
-                Rayfield:Notify({
-                    Title = "WARRNING, READ ALL SkidWare TOS.",
-                    Content = "We care about our user security. But we can't prevent bans. as much as we try. We ask you to use *Alternetive accounts*.",
-                    Duration = 10.5,
-                    Image = 4483362458,
-                    Actions = { -- Notification Buttons
-                        Ignore = {
-                            Name = "Noted!",
-                            Callback = function()
-                                print("User-Tap-Agrred-alt")
-                                Rayfield:Notify({
-                                    Title = "Thanks for using Skid Ware.",
-                                    Content = "Enjoy :-)",
-                                    Duration = 10.5,
-                                    Image = 4483362458,
-                                    Actions = { -- Notification Buttons
-                                        Ignore = {
-                                            Name = "Noted!",
-                                            Callback = function()
-                                                print("User-Tap-Noted!")
-                                                warn("Loaded finished")
-                                                warn("------------------------------------------------------------------------------------------")
-print("WORKS CODE")
-                                            end
-                                        },
-                                    },
-                                })
-                            end
-                        },
-                    },
-                })
-            end
-        },
-    },
-})
 
 ]]
-
-
 print("LOADED")
 warn("------------------------------------------------------------------------------------------")
 print("WORKS CODE")
 
-print("SYSTEMS LOADED SUCCSESFULY!")
-warn("Systems are fully working!")
-print("TAHNSKF OR USING SKID WARE SYSTEMS REPORT ANY BUGS.")
-warn("------------------------------------------------------------------------------------------")
 print("SYSTEMS LOADED SUCCSESFULY!")
 warn("Systems are fully working!")
 print("TAHNSKF OR USING SKID WARE SYSTEMS REPORT ANY BUGS.")
