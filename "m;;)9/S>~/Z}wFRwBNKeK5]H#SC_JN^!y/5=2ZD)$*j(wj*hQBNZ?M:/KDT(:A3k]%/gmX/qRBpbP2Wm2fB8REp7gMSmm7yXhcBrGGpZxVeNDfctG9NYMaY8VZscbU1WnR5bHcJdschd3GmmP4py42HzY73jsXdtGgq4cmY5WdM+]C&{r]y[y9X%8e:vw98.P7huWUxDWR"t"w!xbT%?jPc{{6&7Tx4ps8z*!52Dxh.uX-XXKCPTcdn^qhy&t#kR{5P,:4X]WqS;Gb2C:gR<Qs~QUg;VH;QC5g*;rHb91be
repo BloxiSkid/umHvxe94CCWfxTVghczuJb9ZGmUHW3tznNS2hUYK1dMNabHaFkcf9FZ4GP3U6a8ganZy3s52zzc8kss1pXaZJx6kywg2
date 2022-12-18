@@ -1,12 +1,4 @@
---// V: 0.7.4
 
-
-
-
---//LOADSTRING
--- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader -- // End of loader 
-
---START
 
 print("--------------------NEW STARTUP-----------------------")
 print("Startup detected!")
@@ -59,18 +51,16 @@ print("Loading")
 print("---")
 print("Loading anticheat byapss 1")
 print("----")
---loadstring(game:HttpGet("https://raw.githubusercontent.com/yohohoyu/Hub/main/AntiCHeat%20bypass"))()
+
 --loadstring(game:HttpGet("https://raw.githubusercontent.com/SkidWareObfuscared/eZKJCuAEq5SjpHed5fzQgtKp46eKby5HfNuKYnJ1zX8WpcJ1XA1MnEJtSEgucvzDZZrAt6RkjW6PDcmpU3MeZCAeS3wmaBxsBzm7/main/fYEVcUcB41Fu1RKEA16RjqECyK3Mn7FHexukM3PTadP35gJgnpaGK37RybyqYKMAvAyuAnzXh92ydqfnePMyEKv4HU4CRepCjkYmX3UDVnNRMMUMRrWfCvPrsKCDeHVhhjWkNB5nURuFHvv4Cvjn57kNJAHrAt6nM7HVhwJhQJg5QSSt4pWkSFH9w7TcHFezR17Mmru4BvQDHz9mFsHqUgc6HG44dHGJRN1qrMk5ScqyXTUU8rV8xY8e6453cTZKhD1h1BAVxVJKdTquqU2VUKX59ZnaXZDS1UwVmuFtWprA"))()
 warn("Anti cheat loaded!")
 print("------")
 print("Loading 1")  
 
-warn("Loading main parts")
-print("------")
-loadstring(game:HttpGet('https://raw.githubusercontent.com/BloxiSkid/9Za1K7qtHtJwJm3HhsUeXf6WHtDphVSGkW8KcBr3Aj2rUxWya935pX5QJPdKAWRsVfrcd6rTNKPK23HWbNep9j57XMwvS2xtnmqR/main/BloxiSkid/umHvxe94CCWfxTVghczuJb9ZGmUHW3tznNS2hUYK1dMNabHaFkcf9FZ4GP3U6a8ganZy3sW52zBzcH8kss1pXaZJx6kywg2'))()
+
 print("Loading 2")
 print("--------")
-loadstring(game:HttpGet('https://raw.githubusercontent.com/BloxiSkid/umHvxe94CCWfxTVghczuJb9ZGmUHW3tznNS2hUYK1dMNabHaFkcf9FZ4GP3U6a8ganZy3s52zzc8kss1pXaZJx6kywg2/main/HWIDK1wT9XHf5KEz2MUKVSpb93FQqqAwn1jBk9UCQZqPG82g9MvCn2P1mvPY7XsvxW5nPxuRh5pTPgTBEqvJ6mzxPR3y33V2BEg7PvYR'))()
+
 print("Loading Main UI")
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 print("Loaded Main UI")
